@@ -1,0 +1,160 @@
+<!--
+
+    Archivo: formjurisdicciones.html
+    Proyecto: Sitracha
+    Autor: Claudio Invernizzi
+    E-Mail: cinvernizzi@gmail.com
+    Institución: INP - Dr. Mario Fatala Chabén
+    Fecha: 17/11/2021
+    Version: 1.0
+    Licencia: GPL
+    Comentarios: Procedimiento que arma el formulario para 
+                 el abm de las jurisdicciones
+
+-->
+
+<!-- definimos el formulario -->
+<form name="formjurisdicciones" id="formjurisdicciones">
+
+<!-- definimos la tabla -->
+<table style="width:95%;margin:auto;padding:2px;border:0px;">
+
+    <!-- presenta la clave del registro -->
+    <tr>
+        <td>
+            <label>Id: 
+                <a href="#" 
+                   title="Clave del registro" 
+                   class="easyui-tooltip"> 
+                <input class="easyui-textbox" 
+                       name='idjurisdiccion'
+                       id='idjurisdiccion'
+                       readonly
+                       style="width:50px">
+                </a>
+            </label>        
+        </td>
+
+        <!-- pide la clave indec-->
+        <td>
+            <label>Cod.Indec: 
+                <a href="#" 
+                   title="Clave Indec de la Provincia" 
+                   class="easyui-tooltip"> 
+                <input class="easyui-textbox" 
+                       name='codjurisdiccion'
+                       id='codjurisdiccion'
+                       style="width:100px">
+                </a>
+            </label>        
+        </td>
+
+        <!-- pide la población-->
+        <td>
+            <label>Población: 
+                <a href="#" 
+                   title="Número de habitantes de la Provincia" 
+                   class="easyui-tooltip"> 
+                <input class="easyui-textbox" 
+                       name='poblacionjurisdiccion'
+                       id='poblacionjurisdiccion'
+                       style="width:100px">
+                </a>
+            </label>        
+        </td>
+    </tr>
+</table>
+
+<!-- definimos la tabla -->
+<table style="width:95%;margin:auto;padding:2px;border:0px;">
+
+    <!-- pide el nombre de la localidad -->
+    <tr>
+        <td>
+            <label>Jurisdicción: 
+                <a href="#" 
+                   title="Indique el nombre de la provincia" 
+                   class="easyui-tooltip"> 
+                <input class="easyui-textbox" 
+                       name='nombrejurisdiccion'
+                       id='nombrejurisdiccion'
+                       style="width:300px">
+                </a>
+            </label>        
+        </td>
+    </tr>
+</table>
+
+<!-- abrimos la tabla -->
+<table style="width:95%;margin:auto;padding:2px;border:0px;">
+
+    <!-- presenta el usuario -->
+    <tr>
+        <td>
+            <label>Usuario: 
+                <a href="#" 
+                   title="Usuario que ingresó el registro" 
+                   class="easyui-tooltip"> 
+                <input class="easyui-textbox" 
+                       name='usuariojurisdiccion'
+                       id='usuariojurisdiccion'
+                       readonly
+                       style="width:100px">
+                </a>
+            </label>        
+        </td>    
+
+        <!-- presenta la fecha de alta -->
+        <td>
+            <label>Fecha: 
+                <a href="#" 
+                   title="Fecha de alta del registro" 
+                   class="easyui-tooltip"> 
+                <input class="easyui-textbox" 
+                       name='fechajurisdiccion'
+                       id='fechajurisdiccion'
+                       readonly
+                       style="width:100px">
+                </a>
+            </label>        
+        </td>    
+    </tr>
+</table>
+
+<!-- abrimos la tabla -->
+<table style="width:95%;margin:auto;padding:2px;border:0px;">
+
+    <!-- presenta el botón grabar -->
+    <tr>
+        <td style="text-align: center;">
+            <a id="btnGrabarJurisdiccion" 
+               href="#" 
+               class="easyui-linkbutton"
+               style="width:100px" 
+               data-options="iconCls:'icon-save'"
+               onclick="jurisdicciones.verificaJurisdiccion();">
+               Grabar</a>
+        </td>
+
+        <!-- presenta el botón cancelar -->
+        <td style="text-align: center;">
+            <a id="btnCancelarJurisdiccion" 
+               href="#" 
+               class="easyui-linkbutton" 
+               style="width:100px"
+               data-options="iconCls:'icon-cancel'"
+               onclick="jurisdicciones.cerrarEmergente();">
+               Cancelar</a>
+        </td>
+    </tr>
+</table>
+
+<!-- cierra el formulario -->
+</form>
+
+<script>
+
+    // inicializa los componentes
+    jurisdicciones.initFormJurisdicciones();
+
+</script>

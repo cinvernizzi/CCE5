@@ -1,0 +1,59 @@
+<!--
+
+    Archivo: grillajurisdicciones.html
+    Proyecto: Seroteca
+    Autor: Claudio Invernizzi
+    E-Mail: cinvernizzi@gmail.com
+    Institución: INP - Dr. Mario Fatala Chabén
+    Fecha: 17/11/2021
+    Version: 1.0
+    Licencia: GPL
+    Comentarios: Procedimiento que define la grilla con la 
+                 nómina de jurisdicciones
+
+-->
+
+<!-- definimos el layer emergente -->
+<div id="win-jurisdicciones"></div>
+
+<!-- definimos la grilla -->
+<table id="grilla-jurisdicciones" 
+       style="width:80%;"
+       toolbar="#toolbarjurisdicciones">
+</table>
+
+<!-- definimos el toolbar -->
+<div id="toolbarjurisdicciones" style="padding: 3px;">
+
+    <!-- el botón agregar -->
+    <a href="#" 
+       class="easyui-linkbutton" 
+       iconCls="icon-add" 
+       plain="true" 
+       title="Declara una nueva jurisdicción"
+       id='btnNuevaJurisdiccion'
+       onclick="jurisdicciones.formJurisdicciones();"></a>
+
+    <!-- el botón ayuda -->
+    <a href="#" 
+       class="easyui-linkbutton" 
+       iconCls="icon-help" 
+       plain="true" 
+       title="Ayuda del sistema"
+       id='btnAyudaJurisdicciones'
+       onclick="jurisdicciones.ayudaJurisdicciones();"></a>
+
+    <!-- el combo de país -->
+    <span>País:</span>
+    <input id="paisjurisdiccion" 
+           style="line-height:26px; width:150px; border:1px solid #ccc">
+           
+<!-- cerramos el toolbar de la grilla -->
+</div>
+
+<script>
+
+    // inicializamos el formulario
+    jurisdicciones.initGrillaJurisdicciones();
+    
+</script>

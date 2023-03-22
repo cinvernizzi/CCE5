@@ -4,10 +4,10 @@
  *
  * Class Dependencias | dependencias/dependencias.class.php
  *
- * @package     Diagnostico
+ * @package     CCE
  * @subpackage  Dependencias
  * @author      Lic. Claudio Invernizzi <cinvernizzi@gmail.com>
- * @version     v.1.0 (09/12/2016)
+ * @version     v.5.0 (23/03/2023)
  * @copyright   Copyright (c) 2017, INP
  *
  */
