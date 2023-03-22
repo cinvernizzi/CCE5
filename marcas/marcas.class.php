@@ -15,6 +15,9 @@
  *
 */
 
+// declaramos el tipeado estricto
+declare(strict_types=1);
+
 // inclusión de archivos
 require_once ("../clases/conexion.class.php");
 
@@ -42,7 +45,9 @@ class Marcas {
     protected $IdMarca;                // clave de la marca
     protected $Marca;                  // nombre de la marca
     protected $IdTecnica;              // clave de la técnica
+    protected $Tecnica;                // nombre de la técnica
     protected $IdUsuario;              // clave del usuario
+    protected $Usuario;                // nombre del usuario
 
     // constructor de la clase
     function __construct (){
@@ -54,20 +59,9 @@ class Marcas {
         $this->IdMarca = 0;
         $this->Marca = "";
         $this->IdTecnica = 0;
-
-        // iniciamos sesión
-        session_start();
-
-        // si existe la sesión
-        if(isset($_SESSION["ID"])){
-
-            // obtenemos la id del usuario
-            $this->IdUsuario = $_SESSION["ID"];
-
-        }
-
-        // cerramos sesión
-        session_write_close();
+        $this->Tecnica = "";
+        $this->IdUsuario = 0;
+        $this->Usuario = "";
 
     }
 
@@ -80,44 +74,37 @@ class Marcas {
     }
 
     // métodos de asignación de variables
-    public function setIdMarca($idmarca){
-
-        // verifica que sea un número
-        if (!is_numeric($idmarca)){
-
-            // cierra con error
-            echo "La clave de la marca debe ser un número";
-            exit;
-
-        // si es correcto
-        } else {
-
-            // asigna en la clase
-            $this->IdMarca = $idmarca;
-
-        }
-
+    public function setIdMarca(int $idmarca){
+        $this->IdMarca = $idmarca;
     }
-    public function setIdTecnica($idtecnica){
-
-        // verifica que sea un número
-        if (!is_numeric($idtecnica)){
-
-            // cierra con error
-            echo "La clave de la técnica debe ser un número";
-            exit;
-
-        // si está correcto
-        } else {
-
-            // lo asigna
-            $this->IdTecnica = $idtecnica;
-
-        }
-
+    public function setIdTecnica(int $idtecnica){
+        $this->IdTecnica = $idtecnica;
     }
-    public function setMarca($marca){
+    public function setMarca(string $marca){
         $this->Marca = $marca;
+    }
+    public function setIdUsuario(int $idusuario){
+        $this->IdUsuario = $idusuario;
+    }
+
+    // métodos de retorno de valores
+    public function getIdMarca() : int {
+        return (int) $this->IdMarca;
+    }
+    public function getIdTecnica() : int {
+        return (int) $this->IdTecnica;
+    }
+    public function getTecnica() : string {
+        return $this->Tecnica;
+    }
+    public function getMarca() : string {
+        return $this->Marca;
+    }
+    public function getIdUsuario() : int {
+        return (int) $this->IdUsuario;
+    }
+    public function getUsuario() : string {
+        return $this->Usuario;
     }
 
     /**
