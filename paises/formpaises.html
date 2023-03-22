@@ -1,0 +1,126 @@
+<!--
+
+    Archivo: form_paises.html
+    Proyecto: Sitracha
+    Autor: Claudio Invernizzi
+    E-Mail: cinvernizzi@gmail.com
+    Institución: Ministerio de Salud Nación
+    Fecha: 16/11/2021
+    Version: 1.0
+    Licencia: GPL
+    Comentarios: Procedimiento muestra el formulario para 
+                 el abm de países
+
+-->
+
+<!-- definimos el formulario -->
+<form name='form_paises' id='form_paises'>
+
+<!-- definimos la tabla -->
+<table style="width:95%;margin:auto;padding:5px;border:0px;">
+
+    <!-- presenta la clave del registro -->
+    <tr>
+        <td>
+            <label><strong>Id: </strong>
+                <a href="#" 
+                   title="Clave única del registro" 
+                   class="easyui-tooltip"> 
+                <input class="easyui-textbox" 
+                    name='idpais'
+                    id='idpais'
+                    readonly
+                    style="width:40px">
+                </a>
+            </label>    
+        </td>        
+
+        <!-- presenta el nombre del país -->
+        <td colspan='2'>
+            <label><strong>País: </strong>
+                <a href="#" 
+                   title="Nombre completo del país" 
+                   class="easyui-tooltip"> 
+                <input class="easyui-textbox" 
+                    name='nombrepais'
+                    id='nombrepais'
+                    style="width:200px">
+                </a>
+            </label>    
+        </td>        
+    </tr>
+
+    <!-- presenta el usuario -->
+    <tr>
+        <td>
+            <label><strong>Usuario: </strong>
+                <a href="#" 
+                   title="Usuario que ingresó el registro" 
+                   class="easyui-tooltip"> 
+                <input class="easyui-textbox" 
+                    name='usuariopais'
+                    id='usuariopais'
+                    readonly
+                    style="width:100px">
+                </a>
+            </label>    
+        </td>        
+
+        <!-- presenta la fecha de alta -->
+        <td colspan='2'>
+            <label><strong>Alta: </strong>
+                <a href="#" 
+                title="Fecha de alta del registro" 
+                class="easyui-tooltip"> 
+                <input class="easyui-textbox" 
+                    name='altapais'
+                    id='altapais'
+                    readonly
+                    style="width:100px">
+                </a>
+            </label>    
+        </td>        
+    </tr>
+
+    <!-- insertamos una fila en blanco -->
+    <tr><td colspan='3'><br></td></tr>
+
+    <!-- presenta el botón grabar -->
+    <tr>
+        <td style="text-align: center;">
+            <a id="btnGrabarPais" 
+            href="#" 
+            class="easyui-linkbutton"
+            style="width:100px" 
+            title="Pulse para grabar el registro"
+            data-options="iconCls:'icon-save'"
+            onclick="paises.verificaPais();">
+            Grabar</a>
+        </td>
+
+        <!-- presenta el botón cancelar -->
+        <td style="text-align: center;">
+            <a id="btnCancelarPais" 
+            href="#" 
+            class="easyui-linkbutton" 
+            style="width:100px"
+            title="Reinicia el formulario"
+            data-options="iconCls:'icon-cancel'"
+            onclick="paises.cerrarEmergente();">
+            Cancelar</a>
+        </td>
+    </tr>
+
+<!-- cierra la tabla -->
+</table>
+
+<!-- cerramos el formulario -->
+</form>
+
+<script>
+
+    // llamamos la rutina javascript para inicializar
+    // el formulario 
+    paises.initFormPaises();
+
+</script>
