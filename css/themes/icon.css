@@ -1,0 +1,273 @@
+.icon-blank{
+	background:url('icons/blank.gif') no-repeat center center;
+}
+.icon-add{
+	background:url('icons/edit_add.png') no-repeat center center;
+}
+.icon-edit{
+	background:url('icons/pencil.png') no-repeat center center;
+}
+.icon-clear{
+	background:url('icons/clear.png') no-repeat center center;
+}
+.icon-remove{
+	background:url('icons/edit_remove.png') no-repeat center center;
+}
+.icon-save{
+	background:url('icons/filesave.png') no-repeat center center;
+}
+.icon-cut{
+	background:url('icons/cut.png') no-repeat center center;
+}
+.icon-ok{
+	background:url('icons/ok.png') no-repeat center center;
+}
+.icon-no{
+	background:url('icons/no.png') no-repeat center center;
+}
+.icon-cancel{
+	background:url('icons/cancel.png') no-repeat center center;
+}
+.icon-reload{
+	background:url('icons/reload.png') no-repeat center center;
+}
+.icon-search{
+	background:url('icons/search.png') no-repeat center center;
+}
+.icon-print{
+	background:url('icons/print.png') no-repeat center center;
+}
+.icon-help{
+	background:url('icons/help.png') no-repeat center center;
+}
+.icon-undo{
+	background:url('icons/undo.png') no-repeat center center;
+}
+.icon-redo{
+	background:url('icons/redo.png') no-repeat center center;
+}
+.icon-back{
+	background:url('icons/back.png') no-repeat center center;
+}
+.icon-sum{
+	background:url('icons/sum.png') no-repeat center center;
+}
+.icon-tip{
+	background:url('icons/tip.png') no-repeat center center;
+}
+.icon-filter{
+	background:url('icons/filter.png') no-repeat center center;
+}
+.icon-man{
+	background:url('icons/man.png') no-repeat center center;
+}
+.icon-lock{
+	background:url('icons/lock.png') no-repeat center center;
+}
+.icon-more{
+	background:url('icons/more.png') no-repeat center center;
+}
+.icon-mini-add{
+	background:url('icons/mini_add.png') no-repeat center center;
+}
+.icon-mini-edit{
+	background:url('icons/mini_edit.png') no-repeat center center;
+}
+.icon-mini-refresh{
+	background:url('icons/mini_refresh.png') no-repeat center center;
+}
+.icon-large-picture{
+	background:url('icons/large_picture.png') no-repeat center center;
+}
+.icon-large-clipart{
+	background:url('icons/large_clipart.png') no-repeat center center;
+}
+.icon-large-shapes{
+	background:url('icons/large_shapes.png') no-repeat center center;
+}
+.icon-large-smartart{
+	background:url('icons/large_smartart.png') no-repeat center center;
+}
+.icon-large-chart{
+	background:url('icons/large_chart.png') no-repeat center center;
+}
+
+/* estos íconos los agregamos en el desarrollo y los agregamos acá
+   para tener una api consistente */
+.icon-agregar {
+	background:url('icons/magregar.png') no-repeat center center;
+}
+.icon-analitica {
+	background:url('icons/manalitica.png') no-repeat center center;
+}
+.icon-buscar {
+	background:url('icons/mbuscar.png') no-repeat center center;
+}
+.icon-candado {
+	background:url('icons/mcandado.png') no-repeat center center;
+}
+.icon-carpeta {
+	background:url('icons/mcarpeta.png') no-repeat center center;
+}
+.icon-editar {
+	background:url('icons/meditar.png') no-repeat center center;
+}
+.icon-email {
+	background:url('icons/memail.png') no-repeat center center;
+}
+.icon-error {
+	background:url('icons/merror.png') no-repeat center center;
+}
+.icon-escuela {
+	background:url('icons/mescuela.png') no-repeat center center;
+}
+.icon-estadistica {
+	background:url('icons/mestadistica.png') no-repeat center center;
+}
+.icon-filtrar {
+	background:url('icons/mfiltro.png') no-repeat center center;
+}
+.icon-hoja {
+	background:url('icons/mhoja.png') no-repeat center center;
+}
+.icon-info {
+	background:url('icons/minfo.png') no-repeat center center;
+}
+.icon-lapiz {
+	background:url('icons/mlapiz1.png') no-repeat center center;
+}
+.icon-lapicera {
+	background:url('icons/mlapiz.png') no-repeat center center;
+}
+.icon-lupa {
+	background:url('icons/mlupa.png') no-repeat center center;
+}
+.icon-nuevo {
+	background:url('icons/mnuevo.png') no-repeat center center;
+}
+.icon-preview {
+	background:url('icons/mpreview.png') no-repeat center center;
+}
+.icon-imprimir {
+	background:url('icons/mprint.png') no-repeat center center;
+}
+.icon-residentes {
+	background:url('icons/mresidentes.png') no-repeat center center;
+}
+.icon-salir {
+	background:url('icons/msalida.png') no-repeat center center;
+}
+.icon-usuarios {
+	background:url('icons/musuarios.png') no-repeat center center;
+}
+.icon-confirmar {
+	background:url('icons/mconfirmar.png') no-repeat center center;
+}
+.icon-hospital {
+	background:url('icons/mhospital.png') no-repeat center center;
+}
+.icon-instrumentos {
+	background:url('icons/minstrumentos.png') no-repeat center center;
+}
+.icon-ubicacion {
+	background:url('icons/mubicacion.png') no-repeat center center;
+}
+.icon-blood{
+	background:url('icons/blood.png') no-repeat center center;
+}
+.icon-termometro{
+	background:url('icons/termometro.png') no-repeat center center;
+}
+.icon-biblioteca{
+	background:url('icons/biblioteca.png') no-repeat center center;
+}
+.icon-ingresar{
+	background:url('icons/mingresar.png') no-repeat center center;
+}
+.icon-block{
+	background:url('icons/block.png') no-repeat center center;
+}
+.icon-izquierda{
+	background:url('icons/izquierda.png') no-repeat center center;
+}
+.icon-derecha{
+	background:url('icons/derecha.png') no-repeat center center;
+}
+.icon-billete{
+	background:url('icons/mbillete.png') no-repeat center center;
+}
+.icon-articulos{
+	background:url('icons/articulos.png') no-repeat center center;
+}
+.icon-checklist{
+	background:url('icons/checklist.png') no-repeat center center;
+}
+.icon-calendario{
+	background:url('icons/calendario.png') no-repeat center center;
+}
+.icon-checked{
+	background:url('icons/checked.png') no-repeat center center;
+}
+.icon-pacientes{
+	background:url('icons/mPacientes.png') no-repeat center center;
+}
+.icon-congenito{
+	background:url('icons/mEmbryo.png') no-repeat center center;
+}
+.icon-laboratorio{
+	background:url('icons/mquimica.png') no-repeat center center;
+}
+.icon-stock{
+	background:url('icons/minventario.png') no-repeat center center;
+}
+.icon-mapa{
+	background:url('icons/mMapa.png') no-repeat center center;
+}
+.icon-determinaciones{
+	background:url('icons/manual.png') no-repeat center center;
+}
+.icon-transplante{
+	background:url('icons/mtransplante.png') no-repeat center center;
+}
+.icon-telefono{
+	background:url('icons/mTelefono.png') no-repeat center center;
+}
+.icon-documentos{
+	background:url('icons/documentos.png') no-repeat center center;
+}
+.icon-dependencias{
+	background:url('icons/mcomprobado.png') no-repeat center center;
+}
+.icon-marcador{
+	background:url('icons/marcador.png') no-repeat center center;
+}
+.icon-gota-sangre{
+	background:url('icons/mblood_drop.png') no-repeat center center;
+}
+.icon-nurse{
+	background:url('icons/mnurse.png') no-repeat center center;
+}
+.icon-derivacion{
+	background:url('icons/mDerivacion.png') no-repeat center center;
+}
+.icon-parto{
+	background:url('icons/mparto.png') no-repeat center center;
+}
+.icon-capsula{
+	background:url('icons/capsula.png') no-repeat center center;
+}
+.icon-familia{
+	background:url('icons/familia.png') no-repeat center center;
+}
+.icon-incidencia{
+	background:url('icons/incidencia.png') no-repeat center center;
+}
+.icon-work{
+	background:url('icons/work.png') no-repeat center center;
+}
+.icon-pdf{
+	background:url('icons/pdf.png') no-repeat center center;
+}
+.icon-xls{
+	background:url('icons/xls.png') no-repeat center center;
+}

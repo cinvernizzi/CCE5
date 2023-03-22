@@ -1,0 +1,34 @@
+body {
+    font-family:verdana,helvetica,arial,sans-serif;
+    padding:20px;
+    font-size:12px;
+    margin:0;
+}
+h2 {
+    font-size:18px;
+    font-weight:bold;
+    margin:0;
+    margin-bottom:15px;
+}
+
+/* el fondo de las tablas */
+.tablaMuestras {
+    background-color: whitesmoke;
+    height: 30px;
+}
+
+/* el fondo de las tablas al pasar el mouse */
+.tablaMuestras:hover {
+    background-color: yellow;
+    height: 30px;
+}
+
+/* el layer del mapa */
+#map {
+    height: 100%;
+}
+
+/* para el tipo número */
+.numero{
+    width: 45px;
+}
