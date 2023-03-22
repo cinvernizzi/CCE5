@@ -1,0 +1,123 @@
+<!--
+
+    Archivo: correo.html
+    Proyecto: CCE
+    Autor: Claudio Invernizzi
+    E-Mail: cinvernizzi@gmail.com
+    Institución: INP - Dr. Mario Fatala Chaben
+    Fecha: 22/08/2018
+    Version: 4.0
+    Licencia: GPL
+    Comentarios: Procedimiento con la definición de las plantillas de correo
+                 que se envìan a los usuarios
+
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="es-Es">
+
+    <!-- los estilos de la página -->
+    <style type="text/css">
+
+        /* el cuerpo de la página */
+        html, body {
+            margin : 10;
+            padding : 10;
+        }
+
+        /* la fuente del cuerpo */
+        body {
+            font : 73% "Trebuchet MS", Arial, Helvetica, Tahoma, sans-serif;
+        }
+
+        /* el contendor principal */
+        #container {
+            width : 850px;
+            margin : 0 auto;
+            border : 5px solid #fff;
+            line-height : 1.5em;
+            background : #f2f2f2;
+            color : #666;
+        }
+
+        /* el encabezado de la página */
+        #top {
+            padding: 0;
+            margin-left:10px;
+            height: 90px;
+            background: #e8e8e8 url(http://fatalachaben.info.tm/CCE3/imagenes/encabezado.jpg) no-repeat;
+            color: #484500;
+        }
+
+        /* los encabezados de nivel 1 */
+        #top h1 {
+            padding : 5px 0 0 25px;
+            margin : 0;
+            font-size : 140%;
+            letter-spacing : 5px;
+        }
+
+        #content {
+            margin-left : 240px;
+            border-left : 5px solid #fff;
+            padding : 1em;
+        }
+
+        #content p {
+            padding : 0 2em 0 2em;
+        }
+
+        /* el pié de página */
+        #footer {
+            clear : both;
+            margin : 0;
+            padding : 0;
+            font-size : 0.9em;
+            border-top : 10px solid #fff;
+            color : #fff;
+            background : #8fb8cc;
+        }
+
+        /* el párrafo del pie */
+        #footer p {
+            padding : 0 0 0 5px;
+        }
+
+        /* el encabezado de nivel 2 */
+        h2 {
+        margin : 1em 0 0.5em 0;
+        font-size : 130%;
+        letter-spacing : 5px;
+        }
+
+    </style>
+
+<!-- el encabezado -->
+<head>
+    <title>Control de Calidad Externo</title>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+
+    </head>
+    <body>
+        <div id="container">
+            <div id="top">
+                <p align="right">Av. Paseo Colón 568 (1063)<br>
+                Buenos Aires - Argentina<br>
+                Teléfonos: (5411) 4331-4010 / 4016 / 4017 / 4019 / 7732 / 2330<br>
+                Fax: (5411) 4331-7142<br>
+                E-Mail: <a href="mailto:diagnostico.inp.anlis@gmail.com">diagnostico.inp.anlis@gmail.com</a></p>
+            </div>
+
+            <!-- este texto lo reemplaza la clase de plantillas de correo -->
+            mensaje_correo
+
+            <div id="footer"><p><a href="http://fatalachaben.info.tm/calidad/">Inicio</a> |
+                <a href="mailto:cinvernizzi@gmail.com">Contacto</a> |
+                &copy; 2011 INP - Dr. Mario Fatala Chabén |
+                Diseño <a href="http://fatalachaben.info.tm/calidad"> I.N.P. </a> |
+                Licencia <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 License</a></p>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,140 @@
+<!--
+
+    Archivo: formdependencias.html
+    Proyecto: Seroteca
+    Autor: Claudio Invernizzi
+    E-Mail: cinvernizzi@gmail.com
+    Institución: INP - Dr. Mario Fatala Chabén
+    Fecha: 24/10/2021
+    Version: 1.0
+    Licencia: GPL
+    Comentarios: Procedimiento que arma el formulario para el 
+                 abm de dependencias
+
+-->
+
+<!-- definimos el formulario -->
+<form name='formdependencias' id='formdependencias'>
+
+<!-- definimos la tabla -->
+<table style="width:95%;margin:auto;padding:2px;border:0px;">
+
+    <!-- presenta la clave del registro -->
+    <tr>
+        <td>
+            <label>Id: 
+                <a href="#" 
+                   title="Clave del registro" 
+                   class="easyui-tooltip"> 
+                <input class="easyui-textbox" 
+                       name='iddependencia'
+                       id='iddependencia'
+                       readonly
+                       style="width:50px">
+                </a>
+            </label>        
+        </td>
+
+        <!-- presenta el nombre de la dependencia -->
+        <td>
+            <label>Dependencia: 
+                <a href="#" 
+                   title="Nombre de la dependencia" 
+                   class="easyui-tooltip"> 
+                <input class="easyui-textbox" 
+                       name='nombredependencia'
+                       id='nombredependencia'
+                       style="width:150px">
+                </a>
+            </label>        
+        </td>
+
+        <!-- pide la abreviatura -->
+        <td>
+            <label>Abreviatura: 
+                <a href="#" 
+                   title="Nombre abreviado de la dependencia" 
+                   class="easyui-tooltip"> 
+                <input class="easyui-textbox" 
+                       name='descripcióndependencia'
+                       id='descripciondependencia'
+                       style="width:70px">
+                </a>
+            </label>        
+        </td>
+    </tr>
+</table>
+
+<!-- abrimos la tabla -->
+<table style="width:95%;margin:auto;padding:2px;border:0px;">
+
+    <!-- presenta el usuario -->
+    <tr>
+        <td>
+            <label>Usuario: 
+                <a href="#" 
+                   title="Usuario que ingresó el registro" 
+                   class="easyui-tooltip"> 
+                <input class="easyui-textbox" 
+                       name='usuariodependencia'
+                       id='usuariodependencia'
+                       readonly
+                       style="width:100px">
+                </a>
+            </label>        
+        </td>    
+
+        <!-- presenta la fecha de alta -->
+        <td>
+            <label>Fecha: 
+                <a href="#" 
+                   title="Fecha de alta del registro" 
+                   class="easyui-tooltip"> 
+                <input class="easyui-textbox" 
+                       name='fechadependencia'
+                       id='fechadependencia'
+                       readonly
+                       style="width:100px">
+                </a>
+            </label>        
+        </td>    
+    </tr>
+</table>
+
+<!-- abrimos la tabla -->
+<table style="width:95%;margin:auto;padding:2px;border:0px;">
+
+    <!-- presenta el botón grabar -->
+    <tr>
+        <td style="text-align: center;">
+            <a id="btnGrabarDependencia" 
+               href="#" 
+               class="easyui-linkbutton"
+               style="width:100px" 
+               data-options="iconCls:'icon-save'"
+               onclick="dependencias.verificaDependencia();">
+               Grabar</a>
+        </td>
+
+        <!-- presenta el botón cancelar -->
+        <td style="text-align: center;">
+            <a id="btnCancelarDependencia" 
+               href="#" 
+               class="easyui-linkbutton" 
+               style="width:100px"
+               data-options="iconCls:'icon-cancel'"
+               onclick="dependencias.cerrarEmergente();">
+               Cancelar</a>
+        </td>
+    </tr>
+</table>
+
+<!-- cierra el formulario -->
+</form>
+
+<script>
+
+    // configuramos el formulario
+    dependencias.initFormDependencias();
+
+</script>
