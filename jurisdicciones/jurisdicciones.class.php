@@ -277,6 +277,9 @@ class Jurisdicciones{
      */
     protected function nuevaProvincia() : bool {
 
+        // declaramos las variables
+        $resultado = false;
+
         // crea la consulta de inserción
         $consulta = "INSERT INTO diccionarios.provincias
                                (PAIS,
@@ -291,20 +294,32 @@ class Jurisdicciones{
                                 :poblacion,
                                 :usuario);";
 
-        // asignamos la consulta
-        $psInsertar = $this->Link->prepare($consulta);
+        // capturamos el error
+        try {
 
-        // asigna los valores
-        $psInsertar->bindParam(":pais",       $this->IdPais);
-        $psInsertar->bindParam(":provincia",  $this->NombreProvincia);
-        $psInsertar->bindParam(":cod_prov",   $this->IdProvincia);
-        $psInsertar->bindParam(":poblacion",  $this->PoblacionProvincia);
-        $psInsertar->bindParam(":usuario",    $this->IdUsuario);
+            // asignamos la consulta
+            $psInsertar = $this->Link->prepare($consulta);
 
-        // ejecuta la consulta
-        $resultado = $psInsertar->execute();
+            // asigna los valores
+            $psInsertar->bindParam(":pais",       $this->IdPais);
+            $psInsertar->bindParam(":provincia",  $this->NombreProvincia);
+            $psInsertar->bindParam(":cod_prov",   $this->IdProvincia);
+            $psInsertar->bindParam(":poblacion",  $this->PoblacionProvincia);
+            $psInsertar->bindParam(":usuario",    $this->IdUsuario);
 
-        // retornamos el número de registros
+            // ejecuta la consulta y asigna en la variable
+            $psInsertar->execute();
+            $resultado = true;
+
+        // si hubo un error
+        } catch (PDOException $e) {
+
+            // mostramos el mensaje y asignamos la clave
+            echo $e->getMessage();
+
+        }
+
+        // retornamos
         return (bool) $resultado;
 
     }
@@ -317,6 +332,9 @@ class Jurisdicciones{
      */
     protected function editaProvincia() : bool {
 
+        // declaramos las variables
+        $resultado = false;
+
         // crea la consulta de edición
         $consulta = "UPDATE diccionarios.provincias SET
                             PAIS = :idpais,
@@ -325,20 +343,32 @@ class Jurisdicciones{
                             USUARIO = :usuario
                      WHERE diccionarios.provincias.COD_PROV = :cod_prov;";
 
-        // asignamos la consulta
-        $psInsertar = $this->Link->prepare($consulta);
+        // capturamos el error
+        try {
 
-        // asigna los valores
-        $psInsertar->bindParam(":idpais",     $this->IdPais);
-        $psInsertar->bindParam(":provincia",  $this->NombreProvincia);
-        $psInsertar->bindParam(":poblacion",  $this->PoblacionProvincia);
-        $psInsertar->bindParam(":usuario",    $this->IdUsuario);
-        $psInsertar->bindParam(":cod_prov",   $this->IdProvincia);
+            // asignamos la consulta
+            $psInsertar = $this->Link->prepare($consulta);
 
-        // ejecuta la consulta
-        $resultado = $psInsertar->execute();
+            // asigna los valores
+            $psInsertar->bindParam(":idpais",     $this->IdPais);
+            $psInsertar->bindParam(":provincia",  $this->NombreProvincia);
+            $psInsertar->bindParam(":poblacion",  $this->PoblacionProvincia);
+            $psInsertar->bindParam(":usuario",    $this->IdUsuario);
+            $psInsertar->bindParam(":cod_prov",   $this->IdProvincia);
 
-        // retorna el número de registros
+            // ejecuta la consulta
+            $psInsertar->execute();
+            $resultado = true;
+
+        // si hubo un error
+        } catch (PDOException $e) {
+
+            // mostramos el mensaje y asignamos la clave
+            echo $e->getMessage();
+
+        }
+
+        // retornamos
         return (bool) $resultado;
 
     }
@@ -393,20 +423,37 @@ class Jurisdicciones{
      */
     public function borraProvincia(int $idpais, string $idprovincia) : bool {
 
+        // declaramos las variables
+        $resultado = false;
+
         // componemos la consulta
         $consulta = "DELETE FROM diccionarios.provincias
                      WHERE diccionarios.provincias.cod_prov = :idprovincia AND
                            diccionarios.provincias.pais = :idpais; ";
 
-        // asignamos la consulta
-        $psInsertar = $this->Link->prepare($consulta);
+        // capturamos el error
+        try {
+        
+            // asignamos la consulta
+            $psInsertar = $this->Link->prepare($consulta);
 
-        // asigna los valores
-        $psInsertar->bindParam(":idprovincia", $idprovincia);
-        $psInsertar->bindParam(":idpais",      $idpais);
+            // asigna los valores
+            $psInsertar->bindParam(":idprovincia", $idprovincia);
+            $psInsertar->bindParam(":idpais",      $idpais);
 
-        // ejecuta la consulta y retornamos
-        $resultado = $psInsertar->execute();
+            // ejecuta la consulta y asigna
+            $psInsertar->execute();
+            $resultado = true;
+
+        // si hubo un error
+        } catch (PDOException $e) {
+
+            // mostramos el mensaje y asignamos la clave
+            echo $e->getMessage();
+
+        }
+
+        // retornamos
         return (bool) $resultado;
 
     }

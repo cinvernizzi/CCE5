@@ -1,0 +1,64 @@
+<!--
+
+    Archivo: grillalocalidades.html
+    Proyecto: Seroteca
+    Autor: Claudio Invernizzi
+    E-Mail: cinvernizzi@gmail.com
+    Institución: INP - Dr. Mario Fatala Chabén
+    Fecha: 15/11/2021
+    Version: 1.0
+    Licencia: GPL
+    Comentarios: Procedimiento que define la grilla con la 
+                 nómina de localidades censales
+
+-->
+
+<!-- definimos el layer emergente -->
+<div id="win-localidades"></div>
+
+<!-- definimos la grilla -->
+<table id="grilla-localidades" 
+       style="width:80%;"
+       toolbar="#toolbarlocalidades">
+</table>
+
+<!-- definimos el toolbar -->
+<div id="toolbarlocalidades" style="padding: 3px;">
+
+    <!-- el botón agregar -->
+    <a href="#" 
+       class="easyui-linkbutton" 
+       iconCls="icon-add" 
+       plain="true" 
+       title="Declara una nueva localidad"
+       id='btnNuevaLocalidad'
+       onclick="localidades.formLocalidades();"></a>
+
+    <!-- el botón ayuda -->
+    <a href="#" 
+       class="easyui-linkbutton" 
+       iconCls="icon-help" 
+       plain="true" 
+       title="Ayuda del sistema"
+       id='btnAyudaLocalidades'
+       onclick="localidades.ayudaLocalidades();"></a>
+
+    <!-- el combo de país -->
+    <span>País:</span>
+    <input id="paislocalidad" 
+           style="line-height:26px; width:150px; border:1px solid #ccc">
+
+    <!-- el combo de provincia -->
+    <span>Provincia:</span>
+    <input id="provincialocalidad" 
+           style="line-height:26px; width:150px; border:1px solid #ccc">
+           
+<!-- cerramos el toolbar de la grilla -->
+</div>
+
+<script>
+
+    // inicializamos el formulario
+    localidades.initGrillaLocalidades();
+    
+</script>
