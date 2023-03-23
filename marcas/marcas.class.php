@@ -115,17 +115,19 @@ class Marcas {
      * @param int $tecnica - la id de una técnica
      * @return array
      */
-    public function nominaMarcas($tecnica){
+    public function nominaMarcas(int $tecnica) : array {
 
         // componemos la consulta
-        $consulta = "SELECT cce.marcas_chagas.MARCA AS marca,
-                            cce.marcas_chagas.ID AS id_marca,
-                            cce.marcas_chagas.TECNICA AS id_tecnica,
-                            DATE_FORMAT(cce.marcas_chagas.FECHA_ALTA, '%d/%m/%Y') AS fecha_alta,
-                            cce.responsables.USUARIO AS usuario
-                     FROM cce.marcas_chagas INNER JOIN cce.responsables ON cce.marcas_chagas.USUARIO = cce.responsables.ID
-                     WHERE cce.marcas_chagas.TECNICA = '$tecnica'
-                     ORDER BY cce.marcas_chagas.MARCA;";
+        $consulta = "SELECT cce.vw_marcas.marca AS marca,
+                            cce.vw_marcas.id AS id,
+                            cce.vw_marcas.idtecnica AS idtecnica,
+                            cce.vw_marcas.tecnica AS tecnica,
+                            cce.vw_marcas.fecha AS fecha,
+                            cce.vw_marcas.usuario AS usuario,
+                            cce.vw_marcas.idusuario AS idusuario,
+                     FROM cce.vw_marcas
+                     WHERE cce.vw_marcas.idtecnica = '$tecnica'
+                     ORDER BY cce.vw_marcas.marca;";
 
         // ejecutamos la consulta
         $resultado = $this->Link->query($consulta);
@@ -143,13 +145,16 @@ class Marcas {
      * @param string $marca - nombre de la marca
      * @return int
      */
-    public function getClaveMarca($tecnica, $marca){
+    public function getClaveMarca(int $tecnica, string $marca) : int {
+
+        // inicializamos las variables
+        $clave = 0;
 
         // componemos la consulta
-        $consulta = "SELECT cce.marcas_chagas.ID AS id_marca
-                     FROM cce.marcas_chagas
-                     WHERE cce.marcas_chagas.TECNICA = '$tecnica' AND
-                           cce.marcas_chagas.MARCA = '$marca'; ";
+        $consulta = "SELECT cce.vw_marcas.id AS id
+                     FROM cce.vw_marcas
+                     WHERE cce.vw_marcas.idtecnica = '$tecnica' AND
+                           cce.vw_marcas.marca = '$marca'; ";
 
         // ejecutamos la consulta
         $resultado = $this->Link->query($consulta);
@@ -163,15 +168,18 @@ class Marcas {
             $registro = $resultado->fetch(PDO::FETCH_ASSOC);
 
             // retornamos el vector
-            return $registro["id_marca"];
+            $clave = $registro["id"];
 
         // si no hubo registros
         } else {
 
             // retorna falso
-            return false;
+            $clave = 0;
 
         }
+
+        // retornamos
+        return (int) $clave;
 
     }
 
@@ -181,7 +189,7 @@ class Marcas {
      * @author Claudio Invernizzi <cinvernizzi@gmail.com>
      * @return int
      */
-    public function grabaMarca(){
+    public function grabaMarca() : int {
 
         // si està insertando
         if ($this->IdMarca == 0){
@@ -191,7 +199,7 @@ class Marcas {
         }
 
         // retorna la id del registro
-        return $this->IdMarca;
+        return (int) $this->IdMarca;
 
     }
 
@@ -210,29 +218,29 @@ class Marcas {
                              :idtecnica,
                              :idusuario); ";
 
-        // asignamos la consulta
-        $psInsertar = $this->Link->prepare($consulta);
+        // capturamos el error
+        try {
 
-        // asignamos los parámetros de la consulta
-        $psInsertar->bindParam(":marca", $this->Marca);
-        $psInsertar->bindParam(":idtecnica", $this->IdTecnica);
-        $psInsertar->bindParam(":idusuario", $this->IdUsuario);
+            // asignamos la consulta
+            $psInsertar = $this->Link->prepare($consulta);
 
-        // ejecutamos la edición
-        $resultado = $psInsertar->execute();
+            // asignamos los parámetros de la consulta
+            $psInsertar->bindParam(":marca", $this->Marca);
+            $psInsertar->bindParam(":idtecnica", $this->IdTecnica);
+            $psInsertar->bindParam(":idusuario", $this->IdUsuario);
 
-        // si salió todo bien
-        if ($resultado){
+            // ejecutamos la edición
+            $psInsertar->execute();
 
             // obtiene la id del registro insertado
             $this->IdMarca = $this->Link->lastInsertId();
 
         // si hubo un error
-        } else {
+        } catch (PDOException $e) {
 
-            // inicializa la clave y retorna el error
+            // mostramos el mensaje
             $this->IdMarca = 0;
-            echo $resultado;
+            echo $e->getMessage();
 
         }
 
@@ -250,27 +258,31 @@ class Marcas {
                             USUARIO = :idusuario
                      WHERE cce.marcas_chagas.ID = :idmarca; ";
 
-        // asignamos la consulta
-        $psInsertar = $this->Link->prepare($consulta);
+        // capturamos el error
+        try {
 
-        // asignamos los parámetros de la consulta
-        $psInsertar->bindParam(":marca", $this->Marca);
-        $psInsertar->bindParam(":idtecnica", $this->IdTecnica);
-        $psInsertar->bindParam(":idusuario", $this->IdUsuario);
-        $psInsertar->bindParam(":idmarca", $this->IdMarca);
+            // asignamos la consulta
+            $psInsertar = $this->Link->prepare($consulta);
 
-        // ejecutamos la edición
-        $resultado = $psInsertar->execute();
+            // asignamos los parámetros de la consulta
+            $psInsertar->bindParam(":marca", $this->Marca);
+            $psInsertar->bindParam(":idtecnica", $this->IdTecnica);
+            $psInsertar->bindParam(":idusuario", $this->IdUsuario);
+            $psInsertar->bindParam(":idmarca", $this->IdMarca);
+
+            // ejecutamos la edición
+            $psInsertar->execute();
 
         // si hubo un error
-        if (!$resultado){
+        } catch (PDOException $e) {
 
-            // inicializamos la clave y retornamos el error
+            // mostramos el mensaje
             $this->IdMarca = 0;
-            echo $resultado;
+            echo $e->getMessage();
 
         }
 
     }
 
 }
+?>
