@@ -348,5 +348,31 @@ class Valores {
 
     }
 
+    /**
+     * Método que recibe como parámetro la clave de un valor y 
+     * verifica si puede eliminar el registro, retorna la cantidad
+     * de registros encontrados en las determinaciones
+     * @author Claudio Invernizzi <cinvernizzi@gmail.com>
+     * @param int - clave de la técnica
+     * @param string - valor a eliminar
+     * @return int registros encontrados
+     */
+    public function puedeBorrar(int $idtecnica, string $valor) : int {
+
+        // componemos la consulta
+        $consulta = "SELECT COUNT(cce.chag_datos.id) AS registro1s 
+                     FROM cce.chag_datos
+                     WHERE cce.chag_datos.valor_corte = '$valor' AND 
+                           cce.chag_datos.tecnica = '$idtecnica';";
+
+        // ejecutamos la consulta
+        $resultado = $this->Link->query($consulta);
+
+        // obtenemos el registro y retornamos
+        $registro = $resultado->fetch(PDO::FETCH_ASSOC);
+        return (int) $registro["registros"];
+
+    }
+
 }
 ?>
