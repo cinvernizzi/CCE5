@@ -1,0 +1,126 @@
+<!--
+
+    Archivo: formmarcas.html
+    Proyecto: Seroteca
+    Autor: Claudio Invernizzi
+    E-Mail: cinvernizzi@gmail.com
+    Institución: INP - Dr. Mario Fatala Chabén
+    Fecha: 03/11/2021
+    Version: 1.0
+    Licencia: GPL
+    Comentarios: Procedimiento que arma el formulario para 
+                 el abm de las marcas de reactivos
+
+-->
+
+<!-- definimos el formulario -->
+<form name="formmarcas" name="formmarcas">
+
+<!-- definimos la tabla -->
+<table style="width:95%;margin:auto;padding:2px;border:0px;">
+
+    <!-- presenta la clave del registro -->
+    <tr>
+        <td>
+            <label>Id: 
+                <a href="#" 
+                   title="Clave del registro" 
+                   class="easyui-tooltip"> 
+                <input class="easyui-textbox" 
+                       name='idmarca'
+                       id='idmarca'
+                       readonly
+                       style="width:50px">
+                </a>
+            </label>        
+        </td>
+
+        <!-- pide el nombre de la marca -->
+        <td>
+            <label>Marca: 
+                <a href="#" 
+                   title="Indique el nombre de la marca" 
+                   class="easyui-tooltip"> 
+                <input class="easyui-textbox" 
+                       name='nombremarca'
+                       id='nombremarca'
+                       style="width:220px">
+                </a>
+            </label>        
+        </td>
+    </tr>
+</table>
+
+<!-- abrimos la tabla -->
+<table style="width:95%;margin:auto;padding:2px;border:0px;">
+
+    <!-- presenta el usuario -->
+    <tr>
+        <td>
+            <label>Usuario: 
+                <a href="#" 
+                   title="Usuario que ingresó el registro" 
+                   class="easyui-tooltip"> 
+                <input class="easyui-textbox" 
+                       name='usuariomarca'
+                       id='usuariomarca'
+                       readonly
+                       style="width:100px">
+                </a>
+            </label>        
+        </td>    
+
+        <!-- presenta la fecha de alta -->
+        <td>
+            <label>Fecha: 
+                <a href="#" 
+                   title="Fecha de alta del registro" 
+                   class="easyui-tooltip"> 
+                <input class="easyui-textbox" 
+                       name='fechamarca'
+                       id='fechamarca'
+                       readonly
+                       style="width:100px">
+                </a>
+            </label>        
+        </td>    
+    </tr>
+</table>
+
+<!-- abrimos la tabla -->
+<table style="width:95%;margin:auto;padding:2px;border:0px;">
+
+    <!-- presenta el botón grabar -->
+    <tr>
+        <td style="text-align: center;">
+            <a id="btnGrabarMarca" 
+               href="#" 
+               class="easyui-linkbutton"
+               style="width:100px" 
+               data-options="iconCls:'icon-save'"
+               onclick="marcas.verificaMarca();">
+               Grabar</a>
+        </td>
+
+        <!-- presenta el botón cancelar -->
+        <td style="text-align: center;">
+            <a id="btnCancelarMarca" 
+               href="#" 
+               class="easyui-linkbutton" 
+               style="width:100px"
+               data-options="iconCls:'icon-cancel'"
+               onclick="marcas.cerrarEmergente();">
+               Cancelar</a>
+        </td>
+    </tr>
+</table>
+
+<!-- cierra el formulario -->
+</form>
+
+<script>
+
+    // inicializa los componentes
+    marcas.initFormMarcas();
+
+</script>

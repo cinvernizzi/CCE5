@@ -1,0 +1,59 @@
+<!--
+
+    Archivo: grillavalores.html
+    Proyecto: Seroteca
+    Autor: Claudio Invernizzi
+    E-Mail: cinvernizzi@gmail.com
+    Institución: INP - Dr. Mario Fatala Chabén
+    Fecha: 14/11/2021
+    Version: 1.0
+    Licencia: GPL
+    Comentarios: Procedimiento que define la grilla con la 
+                 nómina de valores correctos según técnica
+
+-->
+
+<!-- definimos el layer emergente -->
+<div id="win-valores"></div>
+
+<!-- definimos la grilla -->
+<table id="grilla-valores" 
+       style="width:65%;"
+       toolbar="#toolbarvalores">
+</table>
+
+<!-- definimos el toolbar -->
+<div id="toolbarvalores" style="padding: 3px;">
+
+    <!-- el botón agregar -->
+    <a href="#" 
+       class="easyui-linkbutton" 
+       iconCls="icon-add" 
+       plain="true" 
+       title="Declara un nuevo valor"
+       id='btnNuevoValor'
+       onclick="valores.formValores();"></a>
+
+    <!-- el botón ayuda -->
+    <a href="#" 
+       class="easyui-linkbutton" 
+       iconCls="icon-help" 
+       plain="true" 
+       title="Ayuda del sistema"
+       id='btnAyudaValores'
+       onclick="valores.ayudaValores();"></a>
+
+    <!-- el combo de técnica -->
+    <span>Técnica:</span>
+    <input id="valortecnica" 
+           style="line-height:26px; width:150px; border:1px solid #ccc">
+           
+<!-- cerramos el toolbar de la grilla -->
+</div>
+
+<script>
+
+    // inicializamos el formulario
+    valores.initGrillaValores();
+    
+</script>

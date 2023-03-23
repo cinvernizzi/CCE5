@@ -1,0 +1,59 @@
+<!--
+
+    Archivo: grillamarcas.html
+    Proyecto: Seroteca
+    Autor: Claudio Invernizzi
+    E-Mail: cinvernizzi@gmail.com
+    Institución: INP - Dr. Mario Fatala Chabén
+    Fecha: 03/11/2021
+    Version: 1.0
+    Licencia: GPL
+    Comentarios: Procedimiento que define la grilla con la 
+                 nómina de marcas de reactivos
+
+-->
+
+<!-- definimos el layer emergente -->
+<div id="win-marcas"></div>
+
+<!-- definimos la grilla -->
+<table id="grilla-marcas" 
+       style="width:65%;"
+       toolbar="#toolbarmarcas">
+</table>
+
+<!-- definimos el toolbar -->
+<div id="toolbarmarcas" style="padding: 3px;">
+
+    <!-- el botón agregar -->
+    <a href="#" 
+       class="easyui-linkbutton" 
+       iconCls="icon-add" 
+       plain="true" 
+       title="Declara una nueva marca"
+       id='btnNuevaMarca'
+       onclick="marcas.formMarcas();"></a>
+
+    <!-- el botón ayuda -->
+    <a href="#" 
+       class="easyui-linkbutton" 
+       iconCls="icon-help" 
+       plain="true" 
+       title="Ayuda del sistema"
+       id='btnAyudaMarcas'
+       onclick="marcas.ayudaMarcas();"></a>
+
+    <!-- el combo de técnica -->
+    <span>Técnica:</span>
+    <input id="marcatecnica" 
+           style="line-height:26px; width:150px; border:1px solid #ccc">
+           
+<!-- cerramos el toolbar de la grilla -->
+</div>
+
+<script>
+
+    // inicializamos el formulario
+    marcas.initGrillaMarcas();
+    
+</script>

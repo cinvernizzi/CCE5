@@ -104,11 +104,13 @@ class Tecnicas {
     public function nominaTecnicas() : array {
 
         // componemos la consulta
-        $consulta = "SELECT cce.tecnicas.TECNICA AS tecnica,
-                            cce.tecnicas.ID AS id_tecnica,
-                            DATE_FORMAT(cce.tecnicas.FECHA_ALTA, '%d/%m/%Y') AS fecha_alta,
-                            cce.responsables.USUARIO AS usuario
-                     FROM cce.tecnicas INNER JOIN cce.responsables ON cce.tecnicas.USUARIO = cce.responsables.ID;";
+        $consulta = "SELECT cce.vw_tecnicas.tecnica AS tecnica,
+                            cce.vw_tecnicas.id AS id_tecnica,
+                            cce.vw_tecnicas.fecha AS fecha,
+                            cce.vw_tecnicas.usuario AS usuario,
+                            cce.vw_tecnicas.idusuario AS idusuario
+                     FROM cce.tecnicas
+                     ORDER BY cce.vw_tecnicas.tecnica;";
 
         // ejecutamos la consulta
         $resultado = $this->Link->query($consulta);
@@ -125,7 +127,7 @@ class Tecnicas {
      * @param string $tecnica - nombre de la técnica
      * @return int
      */
-    public function getClaveTecnica($tecnica){
+    public function getClaveTecnica($tecnica) : int {
 
         // componemos la consulta
         $consulta = "SELECT cce.tecnicas.ID AS idtecnica
@@ -137,7 +139,7 @@ class Tecnicas {
 
         // obtenemos el registro y retornamos
         $registro = $resultado->fetch(PDO::FETCH_ASSOC);
-        return $registro["idtecnica"];
+        return (int) $registro["idtecnica"];
 
     }
 
@@ -147,7 +149,7 @@ class Tecnicas {
      * @author Claudio Invernizzi <cinvernizzi@gmail.com>
      * @return int
      */
-    public function grabaTecnica(){
+    public function grabaTecnica() : int {
 
         // si es un alta
         if ($this->IdTecnica == 0) {
@@ -157,7 +159,7 @@ class Tecnicas {
         }
 
         // retornamos la id
-        return $this->IdTecnica;
+        return (int) $this->IdTecnica;
 
     }
 
@@ -175,28 +177,26 @@ class Tecnicas {
                             (:tecnica,
                             :idusuario);";
 
-        // asignamos la consulta
-        $psInsertar = $this->Link->prepare($consulta);
+        // capturamos el error
+        try {
 
-        // asignamos los parámetros de la consulta
-        $psInsertar->bindParam(":tecnica", $this->Tecnica);
-        $psInsertar->bindParam(":idusuario", $this->IdUsuario);
+            // asignamos la consulta
+            $psInsertar = $this->Link->prepare($consulta);
 
-        // ejecutamos la edición
-        $resultado = $psInsertar->execute();
+            // asignamos los parámetros de la consulta
+            $psInsertar->bindParam(":tecnica", $this->Tecnica);
+            $psInsertar->bindParam(":idusuario", $this->IdUsuario);
 
-        // si salió todo bien
-        if ($resultado){
-
-            // obtiene la id del registro insertado
+            // ejecutamos la edición y asignamos
+            $psInsertar->execute();
             $this->IdTecnica = $this->Link->lastInsertId();
 
         // si hubo un error
-        } else {
+        } catch (PDOException $e) {
 
-            // inicializa la clave y muestra el error
+            // mostramos el mensaje y asignamos
             $this->IdTecnica = 0;
-            echo $resultado;
+            echo $e->getMessage();
 
         }
 
@@ -214,23 +214,25 @@ class Tecnicas {
                             USUARIO = :idusuario
                      WHERE tecnicas.ID = :idtecnica;";
 
-        // asignamos la consulta
-        $psInsertar = $this->Link->prepare($consulta);
+        // capturamos el error
+        try {
 
-        // asignamos los parámetros de la consulta
-        $psInsertar->bindParam(":tecnica", $this->Tecnica);
-        $psInsertar->bindParam(":idusuario", $this->IdUsuario);
-        $psInsertar->bindParam(":idtecnica", $this->IdTecnica);
+            // asignamos la consulta
+            $psInsertar = $this->Link->prepare($consulta);
 
-        // ejecutamos la edición
-        $resultado = $psInsertar->execute();
+            // asignamos los parámetros de la consulta
+            $psInsertar->bindParam(":tecnica", $this->Tecnica);
+            $psInsertar->bindParam(":idusuario", $this->IdUsuario);
+            $psInsertar->bindParam(":idtecnica", $this->IdTecnica);
+
+            // ejecutamos la edición
+            $psInsertar->execute();
 
         // si hubo un error
-        if (!$resultado){
+        } catch (PDOException $e) {
 
-            // inicializa la clave y muestra el error
-            $this->IdTecnica = 0;
-            echo $resultado;
+            // mostramos el mensaje
+            echo $e->getMessage();
 
         }
 
@@ -244,7 +246,7 @@ class Tecnicas {
      * @param string $tecnica - nombre de la técnica
      * @return int
      */
-    public function verificaTecnica($tecnica){
+    public function verificaTecnica(string $tecnica){
 
         // componemos la consulta
         $consulta = "SELECT COUNT(*) AS registros
@@ -261,3 +263,4 @@ class Tecnicas {
     }
 
 }
+?>

@@ -1,0 +1,209 @@
+<!--
+
+    Archivo: formtecnicas.html
+    Proyecto: Seroteca
+    Autor: Claudio Invernizzi
+    E-Mail: cinvernizzi@gmail.com
+    Institución: INP - Dr. Mario Fatala Chabén
+    Fecha: 02/11/2021
+    Version: 1.0
+    Licencia: GPL
+    Comentarios: Procedimiento que arma el formulario para 
+                 el abm de las técnicas diagnósticas
+
+-->
+
+<!-- definimos el formulario -->
+<form name="formtecnicas" name="formtecnicas">
+
+<!-- definimos la tabla -->
+<table style="width:95%;margin:auto;padding:2px;border:0px;">
+
+    <!-- presenta la clave del registro -->
+    <tr>
+        <td>
+            <label>Id: 
+                <a href="#" 
+                   title="Clave del registro" 
+                   class="easyui-tooltip"> 
+                <input class="easyui-textbox" 
+                       name='idtecnica'
+                       id='idtecnica'
+                       readonly
+                       style="width:50px">
+                </a>
+            </label>        
+        </td>
+
+        <!-- pide el nombre coloquial de la técnica -->
+        <td>
+            <label>Tecnica: 
+                <a href="#" 
+                   title="Indique el nombre de coloquial de la técnica" 
+                   class="easyui-tooltip"> 
+                <input class="easyui-textbox" 
+                       name='tecnicatecnica'
+                       id='tecnicatecnica'
+                       style="width:130px">
+                </a>
+            </label>        
+        </td>
+
+        <td>
+            <label>Nombre: 
+                <a href="#" 
+                   title="Indique el nombre de completo de la técnica" 
+                   class="easyui-tooltip"> 
+                <input class="easyui-textbox" 
+                       name='nombretecnica'
+                       id='nombretecnica'
+                       style="width:320px">
+                </a>
+            </label>        
+        </td>
+    </tr>
+</table>
+
+<!-- abrimos la tabla -->
+<table style="width:95%;margin:auto;padding:2px;border:0px;">
+
+    <!-- pide si se usa en inmuno -->
+    <tr>
+        <td>
+            <label>Inmunodeprimidos: 
+                <a href="#" 
+                   title="La técnica se usa en pacientes inmunodeprimidos" 
+                   class="easyui-tooltip"> 
+                <select id="inmunotecnica" 
+                        class="easyui-combobox" 
+                        name="inmunotecnica" 
+                        style="width:100px;">
+
+                    <!-- agregamos las opciones -->
+                    <option></option>
+                    <option>Si</option>
+                    <option>No</option>
+
+                <!-- cerramos los tags -->
+                </select>
+                </a>
+            </label>    
+        </td>
+
+        <!-- pide si se usa por defecto -->
+        <td>
+            <label>Defecto: 
+               <a href="#" 
+                  title="La técnica se utiliza en todos los pacientes" 
+                  class="easyui-tooltip"> 
+                <select id="defectotecnica" 
+                        class="easyui-combobox" 
+                        name="defectotecnica" 
+                        style="width:100px;">
+
+                    <!-- agregamos las opciones -->
+                    <option></option>
+                    <option>Si</option>
+                    <option>No</option>
+
+                <!-- cerramos los tags -->
+                </select>
+                </a>
+            </label>    
+        </td>
+
+        <!-- presenta el spin de número de filas de la placa -->
+        <td>
+            <label>Filas:
+                <a href="#" 
+                   title="Número de filas de la placa" 
+                   class="easyui-tooltip"> 
+                <input name='filastecnica'
+                       id='filastecnica'
+                       style="width:60px">
+                </a>
+            </label>    
+        </td>
+
+        <!-- presenta el spin de número de columnas de la placa -->
+        <td>
+            <label>Columnas:
+                <a href="#" 
+                   title="Número de columnas de la placa" 
+                   class="easyui-tooltip"> 
+                <input name='columnastecnica'
+                       id='columnastecnica'
+                       style="width:60px">
+                </a>
+            </label>    
+        </td>
+    </tr>
+</table>
+
+<!-- abrimos la tabla -->
+<table style="width:95%;margin:auto;padding:2px;border:0px;">
+
+    <!-- presenta el usuario -->
+    <tr>
+        <td>
+            <label>Usuario: 
+                <a href="#" 
+                   title="Usuario que ingresó el registro" 
+                   class="easyui-tooltip"> 
+                <input class="easyui-textbox" 
+                       name='usuariotecnica'
+                       id='usuariotecnica'
+                       readonly
+                       style="width:100px">
+                </a>
+            </label>        
+        </td>    
+
+        <!-- presenta la fecha de alta -->
+        <td>
+            <label>Fecha: 
+                <a href="#" 
+                   title="Fecha de alta del registro" 
+                   class="easyui-tooltip"> 
+                <input class="easyui-textbox" 
+                       name='fechatecnica'
+                       id='fechatecnica'
+                       readonly
+                       style="width:100px">
+                </a>
+            </label>        
+        </td>    
+
+        <!-- presenta el botón grabar -->
+        <td style="text-align: center;">
+            <a id="btnGrabarTecnica" 
+               href="#" 
+               class="easyui-linkbutton"
+               style="width:100px" 
+               data-options="iconCls:'icon-save'"
+               onclick="tecnicas.verificaTecnica();">
+               Grabar</a>
+        </td>
+
+        <!-- presenta el botón cancelar -->
+        <td style="text-align: center;">
+            <a id="btnCancelarTecnica" 
+               href="#" 
+               class="easyui-linkbutton" 
+               style="width:100px"
+               data-options="iconCls:'icon-cancel'"
+               onclick="tecnicas.cerrarEmergente();">
+               Cancelar</a>
+        </td>
+    </tr>
+</table>
+
+<!-- cierra el formulario -->
+</form>
+
+<script>
+
+    // inicializa los componentes
+    tecnicas.initFormTecnicas();
+
+</script>
