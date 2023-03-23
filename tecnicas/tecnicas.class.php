@@ -246,7 +246,7 @@ class Tecnicas {
      * @param string $tecnica - nombre de la técnica
      * @return int
      */
-    public function verificaTecnica(string $tecnica){
+    public function verificaTecnica(string $tecnica) : int {
 
         // componemos la consulta
         $consulta = "SELECT COUNT(*) AS registros
@@ -258,9 +258,75 @@ class Tecnicas {
 
         // obtenemos el registro y retornamos
         $registro = $resultado->fetch(PDO::FETCH_ASSOC);
-        return $registro["registros"];
+        return (int) $registro["registros"];
 
     }
 
+    /**
+     * Método que recibe como parámetro la clave de una técnica y 
+     * verifica si puede eliminar el registro, retorna la cantidad
+     * de registros encontrados en las determinaciones
+     * @author Claudio Invernizzi <cinvernizzi@gmail.com>
+     * @param int $idtecnica - clave de la técnica
+     * @return int registros encontrados
+     */
+    public function puedeBorrar(int $idtecnica) : int {
+
+        // componemos la consulta
+        $consulta = "SELECT COUNT(cce.chag_datos.id) AS registros 
+                     FROM cce.chag_datos
+                     WHERE cce.chag_datos.tecnica = '$idtecnica';";
+
+        // ejecutamos la consulta
+        $resultado = $this->Link->query($consulta);
+
+        // obtenemos el registro y retornamos
+        $registro = $resultado->fetch(PDO::FETCH_ASSOC);
+        return (int) $registro["registros"];
+
+    }
+
+    /**
+     * Método que recibe como parámetro la clave de un registro 
+     * y ejecuta la consulta de eliminación
+     * @author Claudio Invernizzi <cinvernizzi@gmail.com>
+     * @param int $idtecnica - clave del registro
+     * @return bool resultado de la operación
+     */
+    public function borraTecnica(int $idtecnica) : bool {
+
+        // declaramos las variables
+        $resultado = false;
+
+        // componemos la consulta
+        $consulta = "DELETE FROM cce.tecnicas 
+                     WHERE cce.tecnicas.id = :id; ";
+
+        // capturamos el error
+        try {
+
+            // asignamos la consulta
+            $psInsertar = $this->Link->prepare($consulta);
+
+            // asignamos los parámetros de la consulta
+            $psInsertar->bindParam(":id", $idtecnica);
+
+            // ejecutamos la edición y asignamos
+            $psInsertar->execute();
+            $resultado = true;
+
+        // si hubo un error
+        } catch (PDOException $e) {
+
+            // mostramos el mensaje
+            echo $e->getMessage();
+
+        }
+
+        // retornamos
+        return (bool) $resultado;
+
+    }
+    
 }
 ?>
