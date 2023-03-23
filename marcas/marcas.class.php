@@ -322,5 +322,72 @@ class Marcas {
 
     }
 
+    /**
+     * Método que recibe como parámetro la clave de una marca y 
+     * verifica que no esté asignada a ninguna determinación, 
+     * retorna la cantidad de registros encontrados
+     * @author Claudio Invernizzi <cinvernizzi@gmail.com>
+     * @param int $idmarca - clave del registro
+     * @return int registros encontrados
+     */
+    public function puedeBorrar(int $idmarca) : int {
+
+        // componemos la consulta
+        $consulta = "SELECT COUNT(cce.chag_datos.id) AS registros 
+                     FROM cce.chag_datos 
+                     WHERE cce.chag_datos.marca = '$idmarca';";
+
+        // ejecutamos la consulta
+        $resultado = $this->Link->query($consulta);
+
+        // obtenemos el registro y retornamos
+        $registro = $resultado->fetch(PDO::FETCH_ASSOC);
+        return (int) $registro["registros"];
+
+    }
+
+    /**
+     * Método que recibe como parámetro la clave de una marca y 
+     * ejecuta la consulta de eliminación, retorna el resultado
+     * de la operación
+     * @author Claudio Invernizzi <cinvernizzi@gmail.com>
+     * @param int $idmarca - clave del registro
+     * @return bool resultado de la operación
+     */
+    public function borraMarca(int $idmarca) : bool {
+
+        // declaramos las variables
+        $resultado = false;
+
+        // componemos la consulta
+        $consulta = "DELETE FROM cce.marcas_chagas
+                     WHERE cce.marcas_chagas.id = :id; ";
+
+        // capturamos el error
+        try {
+
+            // asignamos la consulta
+            $psInsertar = $this->Link->prepare($consulta);
+
+            // asignamos los parámetros de la consulta
+            $psInsertar->bindParam(":id", $idmarca);
+
+            // ejecutamos la edición y asignamos
+            $psInsertar->execute();
+            $resultado = true;
+
+        // si hubo un error
+        } catch (PDOException $e) {
+
+            // mostramos el mensaje
+            echo $e->getMessage();
+
+        }
+
+        // retornamos
+        return (bool) $resultado;
+
+    }
+
 }
 ?>
