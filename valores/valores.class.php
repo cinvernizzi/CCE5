@@ -7,13 +7,16 @@
  * @package     CCE
  * @subpackage  Valores
  * @author      Lic. Claudio Invernizzi <cinvernizzi@gmail.com>
- * @version     v.4.0 (01/03/2018)
+ * @version     v.5.0 (23/03/2023)
  * @copyright   Copyright (c) 2018, INP
  *
  * Cláse que contiene las operaciones sobre la base de datos
  * de valores aceptados para cada técnica
  *
 */
+
+// declaramos el tipeado estricto
+declare(strict_types=1);
 
 // inclusión de archivos
 require_once ("../clases/conexion.class.php");
@@ -39,9 +42,12 @@ class Valores {
 
     // variables de la tabla de valores aceptados
     protected $IdValor;                  // clave del registro
-    protected $IdTecnicaValor;           // clave de la técnica
+    protected $IdTecnica;                // clave de la técnica
+    protected $Tecnica;                  // nombre de la técnica
     protected $Valor;                    // valor aceptado
+    protected $Usuario;                  // nombre del usuario
     protected $IdUsuario;                // clave del usuario
+    protected $Fecha;                    // fecha de alta
 
     // definición de variables
     protected $Link;                     // puntero a la base de datos
@@ -57,22 +63,11 @@ class Valores {
 
         // inicializamos las variables de clase
         $this->IdValor = 0;
-        $this->IdTecnicaValor = 0;
+        $this->IdTecnica = 0;
         $this->Valor = "";
-
-        // iniciamos sesión
-        session_start();
-
-        // si existe la sesión
-        if(isset($_SESSION["ID"])){
-
-            // obtenemos la id del usuario
-            $this->IdUsuario = $_SESSION["ID"];
-
-        }
-
-        // cerramos sesión
-        session_write_close();
+        $this->Usuario = "";
+        $this->IdUsuario = 0;
+        $this->Fecha = "";
 
     }
 
@@ -88,49 +83,61 @@ class Valores {
     }
 
     // métodos públicos de asignación de valores
-    public function setIdValor($idvalor){
+    public function setIdValor(int $idvalor){
         $this->IdValor = $idvalor;
     }
-    public function setIdTecnicaValor($idtecnicavalor){
-
-        // verifica que sea un número
-        if (!is_numeric($idtecnicavalor)){
-
-            // abandona por error
-            echo "La clave de la técnica debe ser un número";
-            exit;
-
-        // si está correcto
-        } else {
-
-            // lo asigna
-            $this->IdTecnicaValor = $idtecnicavalor;
-
-        }
-
-    }
-    public function setValor($valor){
+    public function setIdTecnica(int $idtecnica){
+        $this->IdTecnica = $idtecnica;
+   }
+    public function setValor(string $valor){
         $this->Valor = $valor;
+    }
+    public function setIdUsuario(int $idusuario){
+        $this->IdUsuario = $idusuario;
+    }
+
+    // métodos de retorno de valores
+    public function getIdValor() : int {
+        return (int) $this->IdValor;
+    }
+    public function getIdTecnica() : int {
+        return (int) $this->IdTecnica;
+    }
+    public function getTecnica() : string {
+        return $this->Tecnica;
+    }
+    public function getValor() : string {
+        return $this->Valor;
+    }
+    public function getIdUsuario() : int {
+        return (int) $this->IdUsuario;
+    }
+    public function getUsuario() : string {
+        return $this->Usuario;
+    }
+    public function getFecha() : string {
+        return $this->Fecha;
     }
 
     /**
      * Método que recibe el nombre de una técnica y retorna el array
      * de valores aceptados
+     * @author Claudio Invernizzi <cinvernizzi@gmail.com>
      * @param int tecnica - clave de la técnica
      * @return array
-     * @author Claudio Invernizzi <cinvernizzi@gmail.com>
      */
-    public function nominaValores($tecnica){
+    public function nominaValores(int $tecnica) : array {
 
         // armamos la consulta
-        $consulta = "SELECT cce.valores_tecnicas.VALOR AS valor_tecnica,
-                            cce.valores_tecnicas.ID AS id_valor,
-                            cce.valores_tecnicas.TECNICA AS id_tecnica,
-                            DATE_FORMAT(cce.valores_tecnicas.FECHA_ALTA, '%d/%m/%Y') AS fecha_alta,
-                            cce.responsables.USUARIO AS usuario
-                     FROM cce.valores_tecnicas INNER JOIN cce.tecnicas ON cce.valores_tecnicas.TECNICA = cce.tecnicas.ID
-                                               INNER JOIN cce.responsables ON cce.valores_tecnicas.USUARIO = cce.responsables.ID
-                     WHERE cce.tecnicas.ID = '$tecnica';";
+        $consulta = "SELECT cce.vw_valores.valor AS valor,
+                            cce.vw_valores.id AS id,
+                            cce.vw_valores.tecnica AS tecnica,
+                            cce.vw_valores.idtecnica AS idtecnica,
+                            cce.vw_valores.fecha AS fecha,
+                            cce.vw_valores.usuario AS usuario,
+                            cce.vw_valores.idusuario AS idusuario
+                     FROM cce.vw_valores
+                     WHERE cce.vw_valores.idtecnica = '$tecnica';";
 
         // ejecutamos la consulta
         $resultado = $this->Link->query($consulta);
@@ -141,12 +148,43 @@ class Valores {
     }
 
     /**
+     * Método que recibe como parámetro la clave de un registro y 
+     * asigna en las variables de clase los valores de la base
+     * @author Claudio Invernizzi <cinvernizzi@gmail.com>
+     * @param int $idvalor - clave del registro
+     */
+    public function getDatosValor(int $idvalor){
+
+        // armamos la consulta
+        $consulta = "SELECT cce.vw_valores.valor AS valor,
+                            cce.vw_valores.id AS id,
+                            cce.vw_valores.tecnica AS tecnica,
+                            cce.vw_valores.idtecnica AS idtecnica,
+                            cce.vw_valores.fecha AS fecha,
+                            cce.vw_valores.usuario AS usuario,
+                            cce.vw_valores.idusuario AS idusuario
+                     FROM cce.vw_valores
+                     WHERE cce.vw_valores.id = '$idvalor';";
+
+        // ejecutamos la consulta y asignamos
+        $resultado = $this->Link->query($consulta);
+        $fila = $resultado->fetch(PDO::FETCH_ASSOC);
+        $this->IdValor = $fila["id"];
+        $this->Valor = $fila["valor"];
+        $this->Tecnica = $fila["tecnica"];
+        $this->IdTecnica = $fila["idtecnica"];
+        $this->Fecha = $fila ["fecha"];
+        $this->Usuario = $fila["usuario"];
+
+    }
+
+    /**
      * Método que graba los datos del valor aceptado de la
      * técnica en la base de datos, retorna la clave del
      * registro afectado
      * @return int
      */
-    public function grabaValores(){
+    public function grabaValores() : int {
 
         // si no recibió la clave
         if ($this->IdValor == 0){
@@ -156,7 +194,7 @@ class Valores {
         }
 
         // retornamos la id
-        return $this->IdValor;
+        return (int) $this->IdValor;
 
     }
 
@@ -172,33 +210,33 @@ class Valores {
                                  USUARIO,
                                  VALOR)
                                 VALUES
-                                (:idtecnicavalor,
+                                (:idtecnica,
                                  :idusuario,
                                  :valor);";
 
-        // asignamos la consulta
-        $psInsertar = $this->Link->prepare($consulta);
+        // capturamos el error
+        try {
 
-        // asignamos los parámetros de la consulta
-        $psInsertar->bindParam(":idtecnicavalor", $this->IdTecnicaValor);
-        $psInsertar->bindParam(":idusuario", $this->IdUsuario);
-        $psInsertar->bindParam(":valor", $this->Valor);
+            // asignamos la consulta
+            $psInsertar = $this->Link->prepare($consulta);
 
-        // ejecutamos la edición
-        $resultado = $psInsertar->execute();
+            // asignamos los parámetros de la consulta
+            $psInsertar->bindParam(":idtecnica", $this->IdTecnica);
+            $psInsertar->bindParam(":idusuario", $this->IdUsuario);
+            $psInsertar->bindParam(":valor",     $this->Valor);
 
-        // si salió todo bien
-        if ($resultado){
+            // ejecutamos la edición
+            $psInsertar->execute();
 
             // obtiene la id del registro insertado
             $this->IdValor = $this->Link->lastInsertId();
 
         // si hubo un error
-        } else {
+        } catch (PDOException $e) {
 
-            // inicializa la clave y retorna el error
+            // mostramos el mensaje
             $this->IdValor = 0;
-            echo $resultado;
+            echo $e->getMessage();
 
         }
 
@@ -212,29 +250,31 @@ class Valores {
 
         // compone la consulta de edición
         $consulta = "UPDATE cce.valores_tecnicas SET
-                            TECNICA = :idtecnicavalor,
+                            TECNICA = :idtecnica,
                             USUARIO = :idusuario,
                             VALOR = :valor
                      WHERE cce.valores_tecnicas.ID = :idvalor;";
 
-        // asignamos la consulta
-        $psInsertar = $this->Link->prepare($consulta);
+        try {
 
-        // asignamos los parámetros de la consulta
-        $psInsertar->bindParam(":idtecnicavalor", $this->IdTecnicaValor);
-        $psInsertar->bindParam(":idusuario", $this->IdUsuario);
-        $psInsertar->bindParam(":valor", $this->Valor);
-        $psInsertar->bindParam(":idvalor", $this->IdValor);
+            // asignamos la consulta
+            $psInsertar = $this->Link->prepare($consulta);
 
-        // ejecutamos la edición
-        $resultado = $psInsertar->execute();
+            // asignamos los parámetros de la consulta
+            $psInsertar->bindParam(":idtecnica", $this->IdTecnica);
+            $psInsertar->bindParam(":idusuario", $this->IdUsuario);
+            $psInsertar->bindParam(":valor",     $this->Valor);
+            $psInsertar->bindParam(":idvalor",   $this->IdValor);
+
+            // ejecutamos la edición
+            $psInsertar->execute();
 
         // si hubo un error
-        if(!$resultado){
+        } catch (PDOException $e) {
 
-            // inicializamos la clave y retornamos el error
+            // mostramos el mensaje
             $this->IdValor = 0;
-            echo $resultado;
+            echo $e->getMessage();
 
         }
 
@@ -244,11 +284,11 @@ class Valores {
      * Método que recibe como parámetro la clave de una técnica y el
      * valor correcto, verifica si ese valor ya está declarado, y
      * retorna el número de registros
-     * @param string $tecnica - nombre de la técnica
+     * @param int $tecnica - clave de la técnica
      * @param string $valor - valor a declarar
      * @return int
      */
-    public function verificaValor($tecnica, $valor){
+    public function verificaValor(int $tecnica, string $valor) : int {
 
         // componemos la consulta
         $consulta = "SELECT COUNT(cce.valores_tecnicas.ID) AS registros
@@ -259,10 +299,8 @@ class Valores {
         // ejecutamos la consulta
         $resultado = $this->Link->query($consulta);
 
-        // retornamos el vector
+        // retornamos el registro
         $fila = $resultado->fetch(PDO::FETCH_ASSOC);
-
-        // obtenemos el registro y retornamos el vector
         return $fila["registros"];
 
     }

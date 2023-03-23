@@ -48,6 +48,7 @@ class Marcas {
     protected $Tecnica;                // nombre de la técnica
     protected $IdUsuario;              // clave del usuario
     protected $Usuario;                // nombre del usuario
+    protected $Fecha;                  // fecha de alta
 
     // constructor de la clase
     function __construct (){
@@ -62,6 +63,7 @@ class Marcas {
         $this->Tecnica = "";
         $this->IdUsuario = 0;
         $this->Usuario = "";
+        $this->Fecha = "";
 
     }
 
@@ -106,6 +108,9 @@ class Marcas {
     public function getUsuario() : string {
         return $this->Usuario;
     }
+    public function getFecha() : string {
+        return $this->Fecha;
+    }
 
     /**
      * Método que retorna el listado de las marcas, recibe como parámetro
@@ -125,6 +130,7 @@ class Marcas {
                             cce.vw_marcas.fecha AS fecha,
                             cce.vw_marcas.usuario AS usuario,
                             cce.vw_marcas.idusuario AS idusuario,
+                            cce.vw_marcas.fecha AS fecha
                      FROM cce.vw_marcas
                      WHERE cce.vw_marcas.idtecnica = '$tecnica'
                      ORDER BY cce.vw_marcas.marca;";
@@ -134,6 +140,38 @@ class Marcas {
 
         // retornamos el vector
         return $resultado->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+    /**
+     * Método que recibe como parámetro la clave de una marca y 
+     * asigna en las variables de clase los datos del registro
+     * @author Claudio Invernizzi <cinvernizzi@gmail.com>
+     * @param int $idmarca - clave del registro
+     */
+    public function getDatosMarca(int $idmarca){
+
+        // componemos la consulta
+        $consulta = "SELECT cce.vw_marcas.marca AS marca,
+                            cce.vw_marcas.id AS id,
+                            cce.vw_marcas.idtecnica AS idtecnica,
+                            cce.vw_marcas.tecnica AS tecnica,
+                            cce.vw_marcas.usuario AS usuario,
+                            cce.vw_marcas.idusuario AS idusuario,
+                            cce.vw_marcas.fecha AS fecha
+                     FROM cce.vw_marcas
+                     WHERE cce.vw_marcas.id = '$idmarca'
+                     ORDER BY cce.vw_marcas.marca;";
+
+        // ejecutamos la consulta y asignamos
+        $resultado = $this->Link->query($consulta);
+        $fila = $resultado->fetch(PDO::FETCH_ASSOC);
+        $this->Marca = $fila["marca"];
+        $this->IdMarca = $fila["id"];
+        $this->IdTecnica = $fila["idtecnica"];
+        $this->Tecnica = $fila["tecnica"];
+        $this->Fecha = $fila["fecha"];
+        $this->Usuario = $fila["usuario"];
 
     }
 
