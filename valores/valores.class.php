@@ -305,5 +305,48 @@ class Valores {
 
     }
 
+    /**
+     * Método que recibe como parámetro la clave de un registro
+     * y ejecuta la consulta de eliminación, retorna el resultado
+     * de la operación
+     * @author Claudio Invernizzi <cinvernizzi@gmail.com>
+     * @param int $idvalor - clave del registro
+     * @return bool resultado de la operación
+     */
+    public function borraValor(int $idvalor) : bool {
+
+        // declaramos las variables
+        $resultado = false;
+
+        // componemos la consulta
+        $consulta = "DELETE FROM cce.valores_tecnicas 
+                     WHERE cce.valores_tecnicas.id = :id;";
+
+        // capturamos el error
+        try {
+
+            // asignamos la consulta
+            $psInsertar = $this->Link->prepare($consulta);
+
+            // asignamos los parámetros de la consulta
+            $psInsertar->bindParam(":id", $idvalor);
+
+            // ejecutamos la edición
+            $psInsertar->execute();
+            $resultado = true;
+
+        // si hubo un error
+        } catch (PDOException $e) {
+
+            // mostramos el mensaje
+            echo $e->getMessage();
+
+        }
+
+        // retornamos
+        return (bool) $resultado;
+
+    }
+
 }
 ?>
