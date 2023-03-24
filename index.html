@@ -56,7 +56,7 @@
     <body class="easyui-layout">
 
         <!-- el encabezado de página -->
-        <div data-options="region:'north',split:false, border:false" style="height:18%;">
+        <div data-options="region:'north',split:false, border:false" style="height:12%;">
 
             <!-- definimos la tabla -->
             <table style='text-align:center; border:0; width:99%;'>
@@ -71,7 +71,7 @@
 
                     <!-- presenta el título -->
                     <td style="text-align: center;">
-                        <h1>Plataforma de Control de Calidad Externo</h1>
+                        <h1 style="color: #035711; font-style: italic; font-family: Verdana, Geneva, Tahoma, sans-serif;">Plataforma de Control de Calidad Externo</h1>
                     </td>
 
                     <!-- presentamos los datos del instituto -->
@@ -135,10 +135,10 @@
                                      title="Busca un usuario en la base"
                                      onclick="usuarios.buscaUsuario();">
                                      Buscar</div>
-                                <div data-options="iconCls:'icon-analitica'"
-                                     title="Lista todos los usuarios autorizados"
-                                     onclick="usuarios.listaUsuarios();">
-                                     Listado</div>
+                                <div data-options="iconCls:'icon-mapa'"
+                                     title="Georreferenciar Usuarios autorizados"
+                                     onclick="usuarios.geoRreferenciar();">
+                                     Georreferenciar</div>   
                                 <div class="menu-sep"></div>
                                 <div data-options="iconCls:'icon-lock'"
                                      title="Cambia su contraseña de ingreso"
@@ -172,8 +172,42 @@
                <!-- definimos el tabulador de laboratorios -->
                <div title="Laboratorios" data-options="iconCls:'icon-laboratorio'" style="overflow:auto; padding:10px;">
 
-                    <!-- definimos el contenedor principal -->
-                    <div id="form_laboratorios"></div>
+                        <!-- definimos el contenedor del menú -->
+                        <div data-options="region:'west', collapsible:true, border:false" style="width:180px">
+
+                         <!-- definimos el menú -->
+                         <div id="menu-laboratorios" class="easyui-menu" data-options="inline:true" style="width:100%;">
+                             <div data-options="iconCls:'icon-nuevo'"
+                                  title="Ingresa un nuevo Laboratorio"
+                                  onclick="laboratorios.nuevoLaboratorio();">
+                                  Nuevo</div>
+                             <div data-options="iconCls:'icon-buscar'"
+                                  title="Busca un laboratorio en la base"
+                                  onclick="laboratorios.buscaLaboratorio();">
+                                  Buscar</div>
+                             <div class="menu-sep"></div>
+                             <div data-options="iconCls:'icon-mapa'"
+                                  title="Georreferenciar Laboratorios"
+                                  onclick="laboratorios.geoRreferenciar();">
+                                  Georreferenciar</div>
+                             <div class="menu-sep"></div>
+                             <div data-options="iconCls:'icon-analitica'"
+                                  title="Reportes de Concordancia"
+                                  onclick="laboratorios.Concordancia();">
+                                  Concordancia</div>
+                             <div class="menu-sep"></div>
+                             <div data-options="iconCls:'icon-info'"
+                                  title="Presenta la ayuda del sistema"
+                                  onclick="laboratorios.ayudaLaboratorios();">
+                                  Ayuda</div>
+                         </div>
+
+                     <!-- cerramos el contenedor-->
+                     </div>
+
+                     <!-- definimos el contenedor principal -->
+                     <div id='form_usuarios' data-options="region:'center', border:false">
+                     </div>
 
                <!-- cerramos el tabulador de laboratorios -->
                </div>
@@ -225,56 +259,6 @@
                                         </div>
                                    </div>
                                    <div data-options="iconCls:'icon-block'">
-                                   <span>Auxiliares</span>
-                                        <div style="width:150px;">
-                                             <div data-options="iconCls:'icon-telefono'"
-                                                  title='Nómina de compañías de celular'
-                                                  onclick="celulares.verGrillaCelulares();">
-                                                  Celulares</div>
-                                             <div data-options="iconCls:'icon-documentos'"
-                                                  title='Nómina de tipos de documento'
-                                                  onclick="documentos.verGrillaDocumentos();">
-                                                  Documentos</div>
-                                             <div data-options="iconCls:'icon-calendario'"
-                                                  title='Nómina de Estados Civiles'
-                                                  onclick="estados.verGrillaEstados();">
-                                                  Estado Civil</div>
-                                             <div data-options="iconCls:'icon-calendario'"
-                                                  title='Nómina de Sexos declarados'
-                                                  onclick="sexos.verGrillaSexos();">
-                                                  Sexos</div>
-                                             <div data-options="iconCls:'icon-calendario'"
-                                                  title='Causas de no conformidades'
-                                                  onclick="causas.verGrillaCausas();">
-                                                  Causas</div>
-                                             <div data-options="iconCls:'icon-work'"
-                                                  title='Nómina de ocupaciones del paciente'
-                                                  onclick="ocupaciones.verGrillaOcupaciones();">
-                                                  Ocupaciones</div>
-                                        </div>
-                                   </div>
-                                   <div data-options="iconCls:'icon-block'">
-                                   <span>Antecedentes</span>
-                                        <div style="width:150px;">
-                                             <div data-options="iconCls:'icon-transplante'"
-                                                  title='Diccionario de órganos de transplante'
-                                                  onclick="organos.verGrillaOrganos();">
-                                                  Organos</div>
-                                             <div data-options="iconCls:'icon-hospital'"
-                                                  title='Diccionario de enfermedades relevantes'
-                                                  onclick="enfermedades.verGrillaEnfermedades();">
-                                                  Enfermedades</div>
-                                             <div data-options="iconCls:'icon-nurse'"
-                                                  title='Nómina de motivos de consulta'
-                                                  onclick="motivos.verGrillaMotivos();">
-                                                  Motivos</div>
-                                             <div data-options="iconCls:'icon-derivacion'"
-                                                  title='Nómina de tipos de derivación'
-                                                  onclick="derivacion.verGrillaDerivacion();">
-                                                  Derivación</div>
-                                        </div>
-                                   </div>
-                                   <div data-options="iconCls:'icon-laboratorio'">
                                    <span>Diagnóstico</span>
                                         <div style="width:150px;">
                                              <div data-options="iconCls:'icon-laboratorio'"
@@ -293,59 +277,13 @@
                                                   title='Diccionario de drogas utilizadas'
                                                   onclick="drogas.verGrillaDrogas();">
                                                   Drogas</div>
-                                             <div data-options="iconCls:'icon-checklist'"
-                                                  title='Diccionario de efectos adversos'
-                                                  onclick="adversos.verGrillaAdversos();">
-                                                  Adversos</div>
-                                        </div>
-                                   </div>
-                                   <div data-options="iconCls:'icon-laboratorio'">
-                                   <span>Laboratorios</span>
-                                        <div style="width:150px;">
-                                             <div data-options="iconCls:'icon-buscar'"
-                                                  title='Busca un Laboratorio en la base' 
-                                                  onclick="laboratorios.buscaLaboratorio();">
-                                                  Buscar</div>
-                                             <div data-options="iconCls:'icon-nuevo'"
-                                                  title='Ingresa un nuevo Laboratorio' 
-                                                  onclick="laboratorios.nuevoLaboratorio();">
-                                                  Nuevo</div>
-                                             <div data-options="iconCls:'icon-print'"
-                                                  title='Genera una Hoja de Cálculo' 
-                                                  onclick="laboratorios.imprimir();">
-                                                  Listado</div>
-                                             <div data-options="iconCls:'icon-dependencias'"
-                                                  title="Departamentos de un laboratorio"
-                                                  onclick="departamentos.verDepartamentos();">
-                                                  Departamentos</div>
-                                             <div data-options="iconCls:'icon-help'"
-                                                  title="Ayuda del sistema"
-                                                  onclick="laboratorios.ayudaLaboratorios();">
-                                                  Ayuda</div>
-                                        </div>
-                                   </div>
-                                   <div data-options="iconCls:'icon-hospital'">
-                                   <span>Instituciones</span>
-                                        <div style="width:150px;">
-                                             <div data-options="iconCls:'icon-buscar'"
-                                                  title='Busca una Institución en la base'
-                                                  onclick="instituciones.buscaInstitucion();">
-                                                  Buscar</div>
-                                             <div data-options="iconCls:'icon-nuevo'"
-                                                  title='Ingresa una nueva Institución'
-                                                  onclick="instituciones.nuevaInstitucion();">
-                                                  Nueva</div>
-                                             <div data-options="iconCls:'icon-print'"
-                                                  title='Imprime el listado completo'
-                                                  onclick="instituciones.imprimir();">
-                                                  Imprimir</div>
-                                             <div data-options="iconCls:'icon-dependencias'"
-                                                  title="Dependencias de las instituciones"
-                                                  onclick="dependencias.verGrillaDependencias();">
-                                                  Dependencias</div>
                                         </div>
                                    </div>
                                    <div class="menu-sep"></div>                               
+                                   <div data-options="iconCls:'icon-checklist'"
+                                        title='Operativos de Control'
+                                        onclick="operativos.verGrillaOperativos();">
+                                        Operativos</div>
                                    <div data-options="iconCls:'icon-candado'"
                                         title="Reportes de auditoría"
                                         onclick="auditoria.verFormAuditoria();">
