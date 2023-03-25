@@ -19,8 +19,8 @@
 */
 
 // incluimos e instanciamos las clases
-require_once ("usuarios.class.php");
-$usuario = new Usuarios();
+require_once ("seguridad.class.php");
+$seguridad = new Seguridad();
 
 // obtenemos los registros
 $resultado = $usuario->recuperaMail($_GET["mail"]);

@@ -50,6 +50,7 @@ class Seguridad {
     protected $IdPais;                // clave del país del usuario
     protected $NivelCentral;          // indica si es de nivel central
     protected $Responsable;           // indica si es responsable
+    protected $Leish;                 // si es responsable de leismania
     protected $IdLaboratorio;         // laboratorio autorizado si no es
                                       // responsable
     /**
@@ -72,6 +73,7 @@ class Seguridad {
         $this->IdPais = 0;
         $this->NivelCentral = "";
         $this->Responsable = "";
+        $this->Leish = "";
         $this->IdLaboratorio = 0;
 
     }
@@ -110,6 +112,9 @@ class Seguridad {
     }
     public function getResponsable() : string {
         return $this->Responsable;
+    }
+    public function getLeish() : string {
+        return $this->Leish;
     }
     public function getUsuario() : string {
         return $this->Usuario;
@@ -182,10 +187,11 @@ class Seguridad {
 
         // buscamos el usuario en la base controlando que coincida la
         // contraseña encriptada y que esté activo
-        $consulta = "SELECT cce.vw_responsables.ID AS id,
-                            cce.vw_responsables.USUARIO AS usuario,
+        $consulta = "SELECT cce.vw_responsables.id AS id,
+                            cce.vw_responsables.usuario AS usuario,
                             cce.vw_responsables.PASSWORD AS password,
-                            cce.vw_responsables.RESPONSABLE_CHAGAS AS responsable,
+                            cce.vw_responsables.responsable_chagas AS responsable,
+                            cce.vw_responsables.responsable_leish AS leish,
                             cce.vw_responsables.idlaboratorio AS idlaboratorio,
                             cce.vw_responsables.provincia AS provincia,
                             cce.vw_responsables.idprovincia AS cod_provincia,
@@ -207,6 +213,7 @@ class Seguridad {
             $this->Id = $registro["id"];
             $this->Usuario = $registro["usuario"];
             $this->Responsable = $registro["responsable"];
+            $this->Leish = $registro["leish"];
             $this->IdLaboratorio = $registro["idlaboratorio"];
             $this->Jurisdiccion = $registro["provincia"];
             $this->CodProv = $registro["cod_provincia"];
