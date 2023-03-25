@@ -1,0 +1,90 @@
+<!--
+
+    Archivo: recuperar.html
+    Proyecto: SiReSa
+    Autor: Claudio Invernizzi
+    E-Mail: cinvernizzi@gmail.com
+    Institución: Ministerio de Salud Nación
+    Fecha: 18/06/2021
+    Version: 1.0
+    Licencia: GPL
+    Comentarios: Procedimiento que arma el formulario para el
+                 ingreso del mail para recuperar la 
+                 contraseña
+
+-->
+
+<!-- definimos el formulario -->
+<form name='recuperar_usuario' id='recuperar_usuario'>
+
+    <!-- presenta el título -->
+    <p style="padding: 5px; text-align: justify;">
+        <b>Por favor ingrese la dirección de correo 
+           electrónico registrada, el sistema le 
+           enviará un mail con los datos de 
+           acceso.
+        </b>
+    </p>
+
+    <!-- abrimos la tabla -->
+    <table style="width:95%; border:0; padding: 5px">
+
+    <!-- abrimos la fila y la columna -->
+    <tr>
+
+        <!-- pedimos el mail -->
+        <td style="text-align: right;">
+            <b>E-Mail:</b>
+        </td>
+        <td>
+            <a href="#" 
+               title="El E-Mail registrado en la base" 
+               class="easyui-tooltip"> 
+            <input class="easyui-textbox" 
+                   name='recuperamail'
+                   id='recuperamail'
+                   style="width:250px">
+            </a>
+        </td>
+
+    <!-- cerramos la fila -->
+    </tr>
+
+    <!-- insertamos un separador -->
+    <tr><td colspan='2'><br></td></tr>
+
+    <!-- abre la fila  -->
+    <tr>
+
+        <!-- presenta el botón aceptar -->
+        <td style="text-align: center;">
+            <a id="btnIngreso" 
+               href="#" 
+               class="easyui-linkbutton"
+               style="width:100px" 
+               title="Pulse para recuperar su mail"
+               onclick="usuarios.validaRecuperacion();"
+               data-options="iconCls:'icon-confirmar'">
+               Ingresar</a>
+        </td>
+
+        <!-- presenta el botón cancelar -->
+        <td style="text-align: center;">
+            <a id="btnCancelarRecuperacion" 
+               href="#" 
+               class="easyui-linkbutton" 
+               style="width:100px"
+               title="Cierra el formulario"
+               onclick="usuarios.cierraRecuperacion();"
+               data-options="iconCls:'icon-cancel'">
+               Cancelar</a>
+        </td>
+
+    <!-- cierra la fila -->
+    </tr>
+
+<!-- cerramos la tabla -->
+</table>
+
+<!-- cerramos el formulario -->
+</form>

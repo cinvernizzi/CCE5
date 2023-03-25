@@ -26,7 +26,7 @@
          abandona la página -->
     <script>
           window.onbeforeunload = function(event) {
-               usuarios.abandonar();
+               seguridad.abandonar();
           };
     </script>
 
@@ -55,6 +55,7 @@
     <script src="tecnicas/tecnicas.class.js"></script>
     <script src="valores/valores.class.js"></script>
     <script src="dependencias/dependencias.class.js"></script>
+    <script src="seguridad/seguridad.class.js"></script>
 
 </head>
 <body>
@@ -341,13 +342,9 @@
           
           // definimos el resto de las librerías
 
-          // cuando el dom está cargado
-          $(window).on("load", function(){
-
-               // verificamos si el usuario está registrado
-               usuarios.verificaIngreso();
-
-          });
+          // instanciamos la seguridad y verificamos 
+          // las credenciales
+          var seguridad = new Seguridad();
 
     </script>
 

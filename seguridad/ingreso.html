@@ -1,0 +1,112 @@
+<!--
+
+    Archivo: ingreso.html
+    Proyecto: CCE
+    Autor: Claudio Invernizzi
+    E-Mail: cinvernizzi@gmail.com
+    Institución: INP - Dr. Mario Fatala Chabén
+    Fecha: 24/032023
+    Version: 5.0
+    Licencia: GPL
+    Comentarios: Procedimiento que arma el formulario para el
+                 ingreso del usuario
+
+-->
+
+<!-- definimos el formulario -->
+<form name='ingreso_usuario' id='ingreso_usuario'>
+
+    <!-- presenta el título -->
+    <p style="padding: 5px; text-align: justify;">
+        <strong>Bienvenido a la Plataforma de Control 
+                de Calidad, para continuar, por favor 
+                ingrese sus credenciales de acceso</strong>
+    </p>
+
+    <!-- abrimos la tabla -->
+    <table style="width:95%; border:0; padding: 5px">
+
+    <!-- abrimos la fila y la columna -->
+    <tr>
+
+        <!-- presenta el logo -->
+        <td rowspan='2'>
+            <img src='imagenes/Logo.jpg'
+                 width="90%"
+                 alt='Logo Fatala'>
+        </td>
+
+        <!-- pedimos el nombre de usuario -->
+        <td style="text-align: right;">
+            <strong>Usuario:</strong>
+        </td>
+        <td>
+            <input type="text"
+                   name='loginusuario'
+                   id='loginusuario'>
+        </td>
+
+    <!-- cerramos la fila -->
+    </tr>
+
+    <!-- abrimos la fila y la columna -->
+    <tr>
+
+        <!-- pedimos la nueva contraseña -->
+        <td style="text-align: right;">
+            <strong>Contraseña:</strong>
+        </td>
+        <td>
+            <input type="text"
+                   name='loginpassword'
+                   id='loginpassword'>
+        </td>
+
+    <!-- cerramos la fila -->
+    </tr>
+
+    <!-- insertamos un separador -->
+    <tr><td colspan='3'><br></td></tr>
+
+    <!-- abre la fila  -->
+    <tr>
+
+        <!-- presenta el botón aceptar -->
+        <td style="text-align: center;" colspan='3'>
+            <a id="btnIngreso"
+               onclick="seguridad.verificaIngreso();">
+            </a>
+        </td>
+    </tr>
+
+    <!-- insertamos un separador -->
+    <tr><td colspan='3'><br></td></tr>
+
+    <!-- abre la fila -->
+    <tr>
+
+        <!-- presenta el enlace para recuperar la
+             contraseña -->
+        <td style="text-align: center;" colspan='3'>
+            <a href='#'
+               title="Pulse para recuperar sus credenciales"
+               onclick="seguridad.recuperaPassword()">
+               Recuperar Contraseña
+            </a>
+
+        </td>
+    <!-- cerramos la fila -->
+    </tr>
+
+<!-- cerramos la tabla -->
+</table>
+
+<!-- cerramos el formulario -->
+</form>
+
+<script>
+
+    // inicializamos el formulario
+    seguridad.initFormIngreso();
+
+</script>
