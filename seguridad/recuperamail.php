@@ -2,10 +2,10 @@
 
 /**
  *
- * recuperamail | usuarios/recuperamail.php
+ * recuperamail | seguridad/recuperamail.php
  *
  * @package     Diagnostico
- * @subpackage  Usuarios
+ * @subpackage  Seguridad
  * @author      Lic. Claudio Invernizzi <cinvernizzi@gmail.com>
  * @version     1.0 (25/01/2022)
  * @copyright   Copyright (c) 2017, INP

@@ -358,7 +358,7 @@ class Seguridad {
 
         // enviamos el correo
         $.ajax({
-            url: "seguridad/enviamail.php?mail="+mail+"&usuario="+usuario+"&password="+password+"&tipo=recuperacion",
+            url: "seguridad/enviamail.php?mail="+mail+"&usuario="+usuario+"&password="+password,
             type: "GET",
             cahe: false,
             contentType: false,

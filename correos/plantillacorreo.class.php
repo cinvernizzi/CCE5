@@ -59,7 +59,7 @@ Class Plantilla Extends PHPMailer {
         $this->Debugoutput = 'html';
 
         // Set the hostname of the mail server
-        $this->Host = 'smtp.gmail.com';
+        $this->Host = 'SMTP.Office365.com';
 
         // seteamos el puerto smtp
         $this->Port = 587;
@@ -71,16 +71,16 @@ Class Plantilla Extends PHPMailer {
         $this->SMTPAuth = true;
 
         // usuario de gmail
-        $this->Username = "cinvernizzi@gmail.com";
+        $this->Username = "cce.inp@outlook.com.ar";
 
         // password de gmail
         $this->Password = "pickard47alfatango";
 
         // from del mensaje
-        $this->setFrom('cinvernizzi@gmail.com', 'Lic. Claudio Invernizzi');
+        $this->setFrom('cce.inp@outlook.com.ar', 'Instituto Nacional de Parasitología');
 
         // responder a del mensaje
-        $this->addReplyTo('cinvernizzi@gmail.com', 'Lic. Claudio Invernizzi');
+        $this->addReplyTo('cce.inp@outlook.com.ar', 'Instituto Nacional de Parasitología');
 
         // el tema del mensaje
         $this->Subject = "Sistema de Control de Calidad Externo";
