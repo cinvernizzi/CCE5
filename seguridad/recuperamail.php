@@ -23,7 +23,7 @@ require_once ("seguridad.class.php");
 $seguridad = new Seguridad();
 
 // obtenemos los registros
-$resultado = $usuario->recuperaMail($_GET["mail"]);
+$resultado = $seguridad->recuperaMail($_GET["mail"]);
 
 // retornamos
 echo json_encode(array("Resultado" => $resultado["resultado"],

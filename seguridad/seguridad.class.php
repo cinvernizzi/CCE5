@@ -20,6 +20,7 @@ declare (strict_types=1);
 
 // inclusión de archivos
 require_once ("../clases/conexion.class.php");
+require_once ("../clases/herramientas.class.php");
 
 // convención para la nomenclatura de las propiedades, comienzan con una
 // letra mayúscula, de tener mas de una palabra no se utilizan separadores
@@ -232,6 +233,86 @@ class Seguridad {
         }
 
     }
+
+    /**
+     * Método que recibe como parámetro el mail de un usuario
+     * verifica si está registrado y en ese caso actualiza
+     * la contraseña de acceso, retorna el resutado de la 
+     * operación y las credenciales de acceso
+     * @author Claudio Invernizzi <cinvernizzi@gmail.com>
+     * @param string $mail - correo del usuario 
+     * @return array - vector con las credenciales
+     */
+    public function recuperaMail(string $mail) : array {
+     
+        // verificamos si el mail existe
+        $resultado = $this->getIdCorreo($mail);
+
+        // si encontró y está activo 
+        if ($resultado["Resultado"] && $resultado["Activo"] == "Si"){
+
+            // creamos una contraseña aleatoria
+            $herramientas = new Herramientas();
+            $contrasenia = $herramientas->generaPass();
+
+            // actualizamos la contraseña
+            $this->nuevoPassword((int) $resultado["IdUsuario"], $contrasenia);
+
+            // retornamos el array
+            return array("Resultado" => true,
+                         "Usuario" => $resultado["Usuario"],
+                         "Password" => $contrasenia);
+
+        // si no encontró
+        } else {
+            return array("Resultado" => false);
+        }
+
+    }
+
+   /**
+     * Método que recibe una dirección de correo (la cual es única)
+     * retorna el vector con los datos del usuario para enviarlos
+     * por mail
+     * @author Lic. Claudio Invernizzi <cinvernizzi@gmail.com>
+     * @param string $mail - correo a buscar en la base
+     * @return array vector con los datos
+     */
+    public function getIdCorreo(string $mail) : array {
+       
+        // componemos la consulta, que exista el mail ya lo
+        // verificamos antes
+        $consulta = "SELECT cce.vw_responsables.id AS id,
+                            cce.vw_responsables.responsable AS responsable,
+                            cce.vw_responsables.institucion AS institucion,
+                            cce.vw_responsables.activo AS activo,
+                            cce.vw_responsables.usuario AS usuario
+                     FROM cce.vw_responsables
+                     WHERE ccw.vw_responsables.mail = '$mail';";
+
+        // ejecutamos la consulta
+        $resultado = $this->Link->query($consulta);
+
+        // si hay registros
+        if ($resultado->rowCount() != 0){
+
+            // obtenemos el registro
+            $fila = $resultado->fetch(PDO::FETCH_ASSOC);
+
+            // retornamos el vector
+            return array("Resultado" => true,
+                         "IdUsuario" => $fila["id"],
+                         "Nombre" => $fila["responsable"],
+                         "Institucion" => $fila["institucion"],
+                         "Activo" => $fila["activo"],
+                         "Usuario" => $fila["usuario"]);
+
+        // si no encontró registros
+        } else {
+            return array("Resultado" => false);
+        }
+
+    }    
 
 }
 ?>
