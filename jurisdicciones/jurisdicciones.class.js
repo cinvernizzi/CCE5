@@ -61,7 +61,7 @@ class Jurisdicciones {
      verGrillaJurisdicciones(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // cargamos el formulario
         $("#form_administracion").load("jurisdicciones/grillajurisdicciones.html");
@@ -76,7 +76,7 @@ class Jurisdicciones {
      initGrillaJurisdicciones(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // definimos la clase y asignamos el usuario
         var clase = this;
@@ -128,7 +128,7 @@ class Jurisdicciones {
      filtraJurisdicciones(idpais){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // llamamos la rutina definida en el datagrid pasándole
         // los argumentos
@@ -162,7 +162,7 @@ class Jurisdicciones {
         }
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // obtenemos la fila seleccionada
         var row = $('#grilla-jurisdicciones').datagrid('getRows')[index];
@@ -196,7 +196,7 @@ class Jurisdicciones {
      getDatosJurisdiccion(index){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // obtenemos la fila seleccionada
         var row = $('#grilla-jurisdicciones').datagrid('getRows')[index];
@@ -234,7 +234,7 @@ class Jurisdicciones {
         }
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -281,7 +281,7 @@ class Jurisdicciones {
      initFormJurisdicciones(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // configuramos los componentes
         $('#idjurisdiccion').textbox({});
@@ -381,7 +381,7 @@ class Jurisdicciones {
      validaJurisdiccion(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -422,7 +422,7 @@ class Jurisdicciones {
     verificaIndec(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -462,7 +462,7 @@ class Jurisdicciones {
      grabaJurisdiccion(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos el formulario
         var datosJurisdiccion = new FormData();
@@ -529,7 +529,7 @@ class Jurisdicciones {
      puedeBorrar(idpais, codpcia){
 
         // reiniciamos la sesion
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -572,7 +572,7 @@ class Jurisdicciones {
     confirmaEliminar(idpais, codpcia){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -600,7 +600,7 @@ class Jurisdicciones {
     borraLocalidad(idpais, codpcia){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // eliminamos el registro
         $.ajax({
@@ -642,7 +642,7 @@ class Jurisdicciones {
      ayudaJurisdicciones(){
 
         // reiniciamos
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // definimos el diálogo y lo mostramos
         $('#win-jurisdiccionews').window({
@@ -671,19 +671,6 @@ class Jurisdicciones {
 
         // cerramos el layer
         $('#win-jurisdicciones').window('close');
-
-    }
-
-    /**
-     * @author Claudio Invernizzi <cinvernizzi@gmail.com>
-     * Método que simplemente reinicia la sesión, lo llamamos
-     * desde la clase para evitar los warnings por el
-     * espacion de trabajo
-     */
-     Reiniciar(){
-
-        // reiniciamos la sesión
-        sesion.reiniciar();
 
     }
 

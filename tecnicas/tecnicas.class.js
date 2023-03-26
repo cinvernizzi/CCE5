@@ -66,7 +66,7 @@ class Tecnicas {
     cargaTecnicas(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // inicializamos el vector
         this.nominaTecnicas = "";
@@ -104,7 +104,7 @@ class Tecnicas {
     verGrillaTecnicas(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // cargamos el formulario
         $("#form_administracion").load("tecnicas/grillatecnicas.html");
@@ -120,7 +120,7 @@ class Tecnicas {
     initGrillaTecnicas(){
 
        // reiniciamos la sesión
-       this.Reiniciar();
+       sesion.reiniciar();
 
        // definimos la clase y asignamos el usuario
        var clase = this;
@@ -184,7 +184,7 @@ class Tecnicas {
         }
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // obtenemos la fila seleccionada
         var row = $('#grilla-tecnicas').datagrid('getRows')[index];
@@ -217,7 +217,7 @@ class Tecnicas {
     getDatosTecnica(index){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // obtenemos la fila seleccionada
         var row = $('#grilla-tecnicas').datagrid('getRows')[index];
@@ -258,7 +258,7 @@ class Tecnicas {
         }
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -290,7 +290,7 @@ class Tecnicas {
     initFormTecnicas(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // configuramos los componentes
         $('#idtecnica').textbox({});
@@ -416,7 +416,7 @@ class Tecnicas {
     validaTecnica(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -456,7 +456,7 @@ class Tecnicas {
     grabaTecnica(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos el formulario
         var datosTecnica = new FormData();
@@ -561,7 +561,7 @@ class Tecnicas {
     puedeBorrar(fila, index){
 
         // reiniciamos la sesion
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -604,7 +604,7 @@ class Tecnicas {
     confirmaEliminar(fila, index){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -633,7 +633,7 @@ class Tecnicas {
     borraTecnica(fila, index){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -692,7 +692,7 @@ class Tecnicas {
     ayudaTecnicas(){
 
         // reiniciamos
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // definimos el diálogo y lo mostramos
         $('#win-tecnicas').window({
@@ -709,19 +709,6 @@ class Tecnicas {
 
         // centramos el formulario
         $('#win-tecnicas').window('center');
-
-    }
-
-    /**
-     * @author Claudio Invernizzi <cinvernizzi@gmail.com>
-     * Método que simplemente reinicia la sesión, lo llamamos
-     * desde la clase para evitar los warnings por el
-     * espacio de trabajo
-     */
-    Reiniciar(){
-
-        // reiniciamos la sesión
-        sesion.reiniciar();
 
     }
 

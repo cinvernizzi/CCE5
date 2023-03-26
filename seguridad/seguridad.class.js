@@ -145,8 +145,8 @@ class Seguridad {
     verificaIngreso(){
 
         // verificamos los datos del formulario
-        var usuario = $('#usuarioadmision').textbox('getValue');
-        var password = $('#passwordingreso').passwordbox('getValue');
+        var usuario = $('#loginusuario').textbox('getValue');
+        var password = $('#loginpassword').passwordbox('getValue');
 
         // si no ingresó el usuario
         if (usuario == ""){
@@ -184,7 +184,7 @@ class Seguridad {
 
         // lo llamamos asincrónico
         $.ajax({
-        url: "seguridad/validaingreso.php?usuario="+usuario+"&password="+password,
+        url: "seguridad/validar.php?usuario="+usuario+"&password="+password,
         type: "GET",
         cahe: false,
         contentType: false,
@@ -411,5 +411,16 @@ class Seguridad {
         $('#win-seguridad').window('close');
 
     }
-    
+
+    /**
+     * @author Lic. Claudio Invernizzi <cinvernizzi@gmail.com>
+     * Método que cierra la sesión de usuario
+     */
+    salir(){
+
+        // reinicia las variables de clase
+        this.initSeguridad();
+
+    }
+
 }

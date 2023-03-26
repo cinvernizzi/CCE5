@@ -197,7 +197,7 @@ class Seguridad {
                             cce.vw_responsables.provincia AS provincia,
                             cce.vw_responsables.idprovincia AS cod_provincia,
                             cce.vw_responsables.pais AS pais,
-                            cce.vw_responsables.nivel_central AS nivel_central
+                            cce.vw_responsables.nivelcentral AS nivel_central
                      FROM cce.vw_responsables
                      WHERE cce.vw_responsables.USUARIO = '$this->Usuario' AND
                            cce.vw_responsables.PASSWORD = MD5('$this->Password') AND

@@ -58,7 +58,7 @@
     verGrillaMarcas(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // cargamos el formulario
         $("#form_administracion").load("marcas/grillamarcas.html");
@@ -73,7 +73,7 @@
     initGrillaMarcas(){
 
        // reiniciamos la sesión
-       this.Reiniciar();
+       sesion.reiniciar();
 
        // definimos la clase y asignamos el usuario
        var clase = this;
@@ -125,7 +125,7 @@
      filtraMarcas(idtecnica){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // llamamos la rutina definida en el datagrid pasándole
         // los argumentos
@@ -159,7 +159,7 @@
         }
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // obtenemos la fila seleccionada
         var row = $('#grilla-marcas').datagrid('getRows')[index];
@@ -190,7 +190,7 @@
     getDatosMarca(index){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // obtenemos la fila seleccionada
         var row = $('#grilla-marcas').datagrid('getRows')[index];
@@ -216,7 +216,7 @@
     formMarcas(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -263,7 +263,7 @@
     initFormMarcas(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // configuramos los componentes
         $('#idmarca').textbox({});
@@ -338,7 +338,7 @@
     validaMarca(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -378,7 +378,7 @@
     grabaMarca(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos el formulario
         var datosMarca = new FormData();
@@ -442,7 +442,7 @@
     puedeBorrar(idmarca){
 
         // reiniciamos la sesion
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -484,7 +484,7 @@
     confirmaEliminar(idmarca){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -511,7 +511,7 @@
     borraMarca(idmarca){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // eliminamos el registro
         $.ajax({
@@ -566,7 +566,7 @@
     ayudaMarcas(){
 
         // reiniciamos
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // definimos el diálogo y lo mostramos
         $('#win-marcas').window({
@@ -583,19 +583,6 @@
 
         // centramos el formulario
         $('#win-marcas').window('center');
-
-    }
-
-    /**
-     * @author Claudio Invernizzi <cinvernizzi@gmail.com>
-     * Método que simplemente reinicia la sesión, lo llamamos
-     * desde la clase para evitar los warnings por el
-     * espacion de trabajo
-     */
-    Reiniciar(){
-
-        // reiniciamos la sesión
-        sesion.reiniciar();
 
     }
 

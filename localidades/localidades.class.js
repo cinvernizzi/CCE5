@@ -60,7 +60,7 @@ class Localidades {
     verGrillaLocalidades(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // cargamos el formulario
         $("#form_administracion").load("localidades/grillalocalidades.html");
@@ -75,7 +75,7 @@ class Localidades {
      initGrillaLocalidades(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // definimos la clase y asignamos el usuario
         var clase = this;
@@ -139,7 +139,7 @@ class Localidades {
      filtraLocalidades(idprovincia){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // llamamos la rutina definida en el datagrid pasándole
         // los argumentos
@@ -173,7 +173,7 @@ class Localidades {
         }
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // obtenemos la fila seleccionada
         var row = $('#grilla-localidades').datagrid('getRows')[index];
@@ -204,7 +204,7 @@ class Localidades {
      getDatosLocalidad(index){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // obtenemos la fila seleccionada
         var row = $('#grilla-localidades').datagrid('getRows')[index];
@@ -243,7 +243,7 @@ class Localidades {
         }
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -290,7 +290,7 @@ class Localidades {
      initFormLocalidades(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // configuramos los componentes
         $('#idlocalidad').textbox({});
@@ -390,7 +390,7 @@ class Localidades {
      validaLocalidad(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -430,7 +430,7 @@ class Localidades {
      grabaLocalidad(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos el formulario
         var datosLocalidad = new FormData();
@@ -497,7 +497,7 @@ class Localidades {
      puedeBorrar(codloc, codpcia){
 
         // reiniciamos la sesion
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -540,7 +540,7 @@ class Localidades {
     confirmaEliminar(codloc, codpcia){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -568,7 +568,7 @@ class Localidades {
     borraLocalidad(codloc, codpcia){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // eliminamos el registro
         $.ajax({
@@ -611,7 +611,7 @@ class Localidades {
      ayudaLocalidades(){
 
         // reiniciamos
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // definimos el diálogo y lo mostramos
         $('#win-localidades').window({
@@ -640,19 +640,6 @@ class Localidades {
 
         // cerramos el layer
         $('#win-localidades').window('close');
-
-    }
-
-    /**
-     * @author Claudio Invernizzi <cinvernizzi@gmail.com>
-     * Método que simplemente reinicia la sesión, lo llamamos
-     * desde la clase para evitar los warnings por el
-     * espacion de trabajo
-     */
-     Reiniciar(){
-
-        // reiniciamos la sesión
-        sesion.reiniciar();
 
     }
 

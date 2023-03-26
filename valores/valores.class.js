@@ -58,7 +58,7 @@
      verGrillaValores(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // cargamos el formulario
         $("#form_administracion").load("valores/grillavalores.html");
@@ -73,7 +73,7 @@
      initGrillaValores(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // definimos la clase y asignamos el usuario
         var clase = this;
@@ -125,7 +125,7 @@
     filtraValores(idtecnica){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // llamamos la rutina definida en el datagrid pasándole
         // los argumentos
@@ -159,7 +159,7 @@
         }
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // obtenemos la fila seleccionada
         var row = $('#grilla-valores').datagrid('getRows')[index];
@@ -190,7 +190,7 @@
     getDatosValor(index){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // obtenemos la fila seleccionada
         var row = $('#grilla-valores').datagrid('getRows')[index];
@@ -228,7 +228,7 @@
         }
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -275,7 +275,7 @@
      initFormValores(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // configuramos los componentes
         $('#idvalor').textbox({});
@@ -316,7 +316,7 @@
      verificaValor(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // la clave de la técnica ya la cargamos al
         // definir el formulario
@@ -356,7 +356,7 @@
      validaValor(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -396,7 +396,7 @@
      grabaValor(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos el formulario
         var datosValor = new FormData();
@@ -462,7 +462,7 @@
      puedeBorrar(idtecnica, valor, idvalor){
 
         // reiniciamos la sesion
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -504,7 +504,7 @@
     confirmaEliminar(idvalor){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -531,7 +531,7 @@
     borraValor(idvalor){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // eliminamos el registro
         $.ajax({
@@ -586,7 +586,7 @@
     ayudaValores(){
 
         // reiniciamos
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // definimos el diálogo y lo mostramos
         $('#win-valores').window({
@@ -603,19 +603,6 @@
 
         // centramos el formulario
         $('#win-valores').window('center');
-
-    }
-
-    /**
-     * @author Claudio Invernizzi <cinvernizzi@gmail.com>
-     * Método que simplemente reinicia la sesión, lo llamamos
-     * desde la clase para evitar los warnings por el
-     * espacion de trabajo
-     */
-    Reiniciar(){
-
-        // reiniciamos la sesión
-        sesion.reiniciar();
 
     }
 

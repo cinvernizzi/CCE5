@@ -57,7 +57,7 @@ class Paises {
      verGrillaPaises(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // cargamos el formulario
         $("#form_administracion").load("paises/grillapaises.html");
@@ -73,7 +73,7 @@ class Paises {
      initGrillaPaises(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // definimos la clase
         var clase = this;
@@ -139,7 +139,7 @@ class Paises {
         }
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos las variables
         var id;
@@ -180,7 +180,7 @@ class Paises {
      getDatosPais(index, field){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // obtenemos la fila seleccionada
         var row = $('#grilla-paises').datagrid('getRows')[index];
@@ -230,7 +230,7 @@ class Paises {
         }
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -262,7 +262,7 @@ class Paises {
      initFormPaises(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // configuramos el formulario
         $('#btnGrabarPais').linkbutton({});
@@ -337,7 +337,7 @@ class Paises {
      validaPais(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -377,7 +377,7 @@ class Paises {
      grabaPais(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos el formulario
         var datosPais = new FormData();
@@ -437,7 +437,7 @@ class Paises {
      puedeBorrar(index, field){
 
         // reiniciamos la sesion
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -489,7 +489,7 @@ class Paises {
      confirmaEliminar(idpais){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -516,7 +516,7 @@ class Paises {
      borraOrgano(idpais){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // eliminamos el registro
         $.ajax({
@@ -556,7 +556,7 @@ class Paises {
     ayudaPaises(){
 
         // reiniciamos
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // definimos el diálogo y lo mostramos
         $('#win-paises').window({
@@ -585,19 +585,6 @@ class Paises {
 
         // cerramos el layer
         $('#win-paises').window('close');
-
-    }
-
-    /**
-     * @author Claudio Invernizzi <cinvernizzi@gmail.com>
-     * Método que simplemente reinicia la sesión, lo llamamos
-     * desde la clase para evitar los warnings por el
-     * espacio de trabajo
-     */
-     Reiniciar(){
-
-        // reiniciamos la sesión
-        sesion.reiniciar();
 
     }
 

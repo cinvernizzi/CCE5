@@ -70,7 +70,7 @@ Class Plantilla Extends PHPMailer {
         // usamos autenticación
         $this->SMTPAuth = true;
 
-        // usuario de gmail
+        // usuario de outlook
         $this->Username = "cce.inp@outlook.com.ar";
 
         // password de gmail

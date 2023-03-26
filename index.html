@@ -22,14 +22,6 @@
     <!-- cargamos el favicon -->
     <link rel="icon" type="image/x-icon" href="imagenes/logo.png"/>
 
-    <!-- establecemos el evento de cierre de sesión cuando 
-         abandona la página -->
-    <script>
-          window.onbeforeunload = function(event) {
-               seguridad.abandonar();
-          };
-    </script>
-
     <!-- carga las hotas de estilo -->
     <link rel="stylesheet" type="text/css" href="css/themes/default/easyui.css"/>
     <link rel="stylesheet" type="text/css" href="css/themes/icon.css"/>
@@ -158,7 +150,7 @@
                                 <div class="menu-sep"></div>
                                 <div data-options="iconCls:'icon-back'"
                                      title="Cierra la sesión del usuario"
-                                     onclick="usuarios.salir();">
+                                     onclick="seguridad.salir();">
                                      Salir</div>
                                 <div class="menu-sep"></div>
                                 <div data-options="iconCls:'icon-info'"
@@ -329,7 +321,10 @@
 
     <script>
 
-          // iniciamos las librerías del sistema
+          // cargamos estas primero para estar seguros que 
+          // tenemos los diccionarios disponibles al cargar
+          // los formularios
+          var sesion = new Sesiones();          
           var paises = new Paises();
           var localidades = new Localidades();
           var jurisdicciones = new Jurisdicciones();
@@ -337,11 +332,6 @@
           var marcas = new Marcas();
           var valores = new Valores();
           var dependencias = new Dependencias();
-
-          // cargamos estas primero para estar seguros que 
-          // tenemos los diccionarios disponibles al cargar
-          // los formularios
-          var sesion = new Sesiones();
           
           // definimos el resto de las librerías
 

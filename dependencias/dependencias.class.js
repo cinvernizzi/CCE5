@@ -60,7 +60,7 @@ class Dependencias {
     verGrillaDependencias(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // cargamos el formulario
         $("#form_administracion").load("dependencias/grilladependencias.html");
@@ -75,7 +75,7 @@ class Dependencias {
     initGrillaDependencias(){
 
        // reiniciamos la sesión
-       this.Reiniciar();
+       sesion.reiniciar();
 
        // definimos la clase y asignamos el usuario
        var clase = this;
@@ -134,7 +134,7 @@ class Dependencias {
         }
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // obtenemos la fila seleccionada
         var row = $('#grilla-dependencias').datagrid('getRows')[index];
@@ -166,7 +166,7 @@ class Dependencias {
     getDatosDependencia(index){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // obtenemos la fila seleccionada
         var row = $('#grilla-dependencias').datagrid('getRows')[index];
@@ -203,7 +203,7 @@ class Dependencias {
         }
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -235,7 +235,7 @@ class Dependencias {
     initFormDependencias(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // configuramos los componentes
         $('#iddependencia').textbox({});
@@ -278,7 +278,7 @@ class Dependencias {
     verificaDependencia(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // si está editando
         if ($('#iddependencia').textbox('getValue') != ""){
@@ -326,7 +326,7 @@ class Dependencias {
     validaDependencia(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -366,7 +366,7 @@ class Dependencias {
     grabaDependencia(){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase y el formulario
         var datosDependencia = new FormData();
@@ -424,7 +424,7 @@ class Dependencias {
     puedeBorrar(iddependencia){
 
         // reiniciamos la sesion
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -466,7 +466,7 @@ class Dependencias {
     confirmaEliminar(iddependencia){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // declaramos la clase
         var clase = this;
@@ -493,7 +493,7 @@ class Dependencias {
     borraDependencia(iddependencia){
 
         // reiniciamos la sesión
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // eliminamos el registro
         $.ajax({
@@ -536,7 +536,7 @@ class Dependencias {
     ayudaDependencia(){
 
         // reiniciamos
-        this.Reiniciar();
+        sesion.reiniciar();
 
         // definimos el diálogo y lo mostramos
         $('#win-dependencias').window({
@@ -564,17 +564,6 @@ class Dependencias {
 
         // cerramos el layer
         $('#win-dependencias').window('close');
-
-    }
-
-    /**
-     * @author Claudio Invernizzi <cinvernizzi@gmail.com>
-     * Método que reinicia la sesión
-     */
-    Reiniciar(){
-
-        // reiniciamos la sesión
-        sesion.reiniciar();
 
     }
 
