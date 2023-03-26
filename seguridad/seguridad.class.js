@@ -65,6 +65,9 @@ class Seguridad {
      */
     verFormIngreso(){
 
+        // creamos el div
+        $("#form_usuarios").append("<div id='win-seguridad'></div>");
+
         // definimos el diálogo y lo mostramos
         $('#win-seguridad').window({
             width:500,
@@ -249,8 +252,11 @@ class Seguridad {
      */
     recuperaPassword(){
 
-        // cerramos el layer emergente
+        // destruimos el layer
         this.cerrarEmergente();
+
+        // creamos el div
+        $("#form_usuarios").append("<div id='win-seguridad'></div>");
 
         // pedimos ingrese el mail
         $('#win-seguridad').window({
@@ -407,8 +413,8 @@ class Seguridad {
      */
     cerrarEmergente(){
 
-        // cerramos el layer
-        $('#win-seguridad').window('close');
+        // destruimos el layer
+        $('#win-seguridad').window('destroy');
 
     }
 
