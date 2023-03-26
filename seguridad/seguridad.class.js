@@ -320,6 +320,9 @@ class Seguridad {
      */
     enviaRecuperacion(mail){
 
+        // definimos la clase
+        var clase = this;
+        
         // verificamos que el mail exista
         $.ajax({
             url: "seguridad/recuperamail.php?mail="+mail,
@@ -343,7 +346,7 @@ class Seguridad {
                 } else {
 
                     // presenta el mensaje
-                    Mensaje("Error", "Atención", "El correo no està registrado");
+                    Mensaje("Error", "Atención", "El correo no está registrado");
 
                 }
 

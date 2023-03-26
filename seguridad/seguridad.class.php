@@ -148,7 +148,7 @@ class Seguridad {
         // componemos la consulta de actualización
         $consulta = "UPDATE cce.responsables SET
                             cce.responsables.password = MD5(:nuevopass)
-                     WHERE cce.responsables.id = ':id';";
+                     WHERE cce.responsables.id = :id;";
 
         // capturamos el error
         try {
@@ -255,8 +255,12 @@ class Seguridad {
             $herramientas = new Herramientas();
             $contrasenia = $herramientas->generaPass();
 
+            // asignamos en la clase
+            $this->Id = (int) $resultado["IdUsuario"];
+            $this->NuevoPass = $contrasenia;
+
             // actualizamos la contraseña
-            $this->nuevoPassword((int) $resultado["IdUsuario"], $contrasenia);
+            $this->nuevoPassword();
 
             // retornamos el array
             return array("Resultado" => true,
@@ -288,7 +292,7 @@ class Seguridad {
                             cce.vw_responsables.activo AS activo,
                             cce.vw_responsables.usuario AS usuario
                      FROM cce.vw_responsables
-                     WHERE ccw.vw_responsables.mail = '$mail';";
+                     WHERE cce.vw_responsables.mail = '$mail';";
 
         // ejecutamos la consulta
         $resultado = $this->Link->query($consulta);

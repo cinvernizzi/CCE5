@@ -77,10 +77,10 @@ Class Plantilla Extends PHPMailer {
         $this->Password = "pickard47alfatango";
 
         // from del mensaje
-        $this->setFrom('cce.inp@outlook.com.ar', 'Instituto Nacional de Parasitología');
+        $this->setFrom('cce.inp@outlook.com.ar', 'Instituto Nacional de Parasitologia');
 
         // responder a del mensaje
-        $this->addReplyTo('cce.inp@outlook.com.ar', 'Instituto Nacional de Parasitología');
+        $this->addReplyTo('cce.inp@outlook.com.ar', 'Instituto Nacional de Parasitologia');
 
         // el tema del mensaje
         $this->Subject = "Sistema de Control de Calidad Externo";

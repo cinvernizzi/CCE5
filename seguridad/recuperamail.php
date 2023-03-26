@@ -4,7 +4,7 @@
  *
  * recuperamail | seguridad/recuperamail.php
  *
- * @package     Diagnostico
+ * @package     CCE
  * @subpackage  Seguridad
  * @author      Lic. Claudio Invernizzi <cinvernizzi@gmail.com>
  * @version     1.0 (25/01/2022)
@@ -26,8 +26,8 @@ $seguridad = new Seguridad();
 $resultado = $seguridad->recuperaMail($_GET["mail"]);
 
 // retornamos
-echo json_encode(array("Resultado" => $resultado["resultado"],
-                       "Usuario" =>   $resultado["usuario"],
-                       "Password" =>  $resultado["password"]));
+echo json_encode(array("Resultado" => $resultado["Resultado"],
+                       "Usuario" =>   $resultado["Usuario"],
+                       "Password" =>  $resultado["Password"]));
 
 ?>
