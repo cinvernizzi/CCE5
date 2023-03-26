@@ -255,7 +255,7 @@ class Seguridad {
         // pedimos ingrese el mail
         $('#win-seguridad').window({
             width:400,
-            height:230,
+            height:250,
             modal:true,
             title: "Recuperar Contraseña",
             minimizable: false,
