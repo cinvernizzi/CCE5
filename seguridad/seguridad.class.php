@@ -318,5 +318,29 @@ class Seguridad {
 
     }    
 
+    /**
+     * Método que recibe la clave de un usuario y el password y 
+     * verifica que coincida con el password declarado en la 
+     * base, utilizado en el cambio de contraseña
+     * @author Claudio Invernizzi <cinvernizzi@gmail.com>
+     * @param int $idusuario - clave del usuario
+     * @param string $password - contraseña actual
+     * @return int registros encontrados (normalmente 1 o 0)
+     */
+    public function validaPassword(int $idusuario, string $password) : int {
+
+        // componemos la consulta
+        $consulta = "SELECT COUNT(cce.vw_responsables.id) AS registros 
+                     FROM cce.vw_responsables 
+                     WHERE cce.vw_responsables.id = '$idusuario' AND 
+                           cce.vw_responsables.password = MD5('$password'); ";
+
+        // ejecutamos la consulta y retornamos
+        $resultado = $this->Link->query($consulta);
+        $fila = $resultado->fetch(PDO::FETCH_ASSOC);
+        return (int) $fila["registros"];
+        
+    }
+
 }
 ?>

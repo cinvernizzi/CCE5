@@ -322,7 +322,7 @@ class Seguridad {
 
         // definimos la clase
         var clase = this;
-        
+
         // verificamos que el mail exista
         $.ajax({
             url: "seguridad/recuperamail.php?mail="+mail,
@@ -407,6 +407,216 @@ class Seguridad {
 
         // pedimos usuario y pass
         this.verFormIngreso();
+
+    }
+
+    /**
+     * @author Claudio Invernizzi <cinvernizzi@gmail.com>
+     * Método que abre el diálogo emergente pidiendo el
+     * nuevo password
+     */
+    nuevoPassword(){
+
+        // reiniciamos la sesión
+        sesion.reiniciar();
+ 
+        // creamos el div
+        $("#form_usuarios").append("<div id='win-seguridad'></div>");
+        
+        // definimos el diálogo y lo mostramos
+        $('#win-seguridad').window({
+            width:400,
+            height:290,
+            modal:true,
+            title: "Nuevo Password",
+            minimizable: false,
+            closable: true,
+            href: 'seguridad/password.html',
+            loadingMessage: 'Cargando',
+            border: 'thin'
+        });
+
+        // centramos el formulario
+        $('#win-seguridad').window('center');
+
+    }
+
+    /**
+     * @author Claudio Invernizzi <cinvernizzi@gmail.com>
+     * Método llamado al cargar el formulario de cambio de 
+     * contraseña que configura los eventos del mismo
+     */
+    initFormPassword(){
+
+        // reiniciamos la sesión
+        sesion.reiniciar();
+
+        // definimos la clase
+        var clase = this;
+
+        // configuramos los elementos del formulario
+        $('#passwordactual').textbox({});
+        $('#passwordnuevo').textbox({});
+        $('#passwordverifica').textbox({});        
+        $('#btnNuevoPassword').linkbutton({});
+        $('#btnCancelaPassword').linkbutton({});
+
+        // asociamos el evento key down de la contraseña actual
+        $('#passwordactual').textbox('textbox').bind('keydown', function(e){
+            if (e.keyCode == 13){
+                $('#passwordnuevo').textbox('textbox').focus();
+            }
+        });	
+
+        // asociamos el evento key down de la nueva contraseña
+        $('#passwordnuevo').textbox('textbox').bind('keydown', function(e){
+            if (e.keyCode == 13){
+                $('#passwordverifica').textbox('textbox').focus();
+            }
+        });	
+        
+        // asociamos el evento key down de la repetición
+        $('#passwordverifica').textbox('textbox').bind('keydown', function(e){
+            if (e.keyCode == 13){
+                clase.cambiarPassword();
+            }
+        });	
+
+        // fijamos el foco en el campo 
+        $('#passwordactual').textbox('textbox').focus();
+
+    }
+
+    /**
+     * @author Claudio Invernizzi <cinvernizzi@gmail.com>
+     * Método que verifica el formulario de cambio de
+     * contraseña antes de enviarlo al servidor
+     */
+    cambiarPassword(){
+
+        // reiniciamos la sesión
+        sesion.reiniciar();
+
+        // verificamos si indicó el password actual
+        if ($('#passwordactual').textbox('getValue') == ""){
+
+            // presenta el mensaje
+            Mensaje("Error", "Atención", "Debe ingresar su contraseña");
+            return;
+
+        }
+
+        // verificamos si ingresó el nuevo password
+        if ($('#passwordnuevo').textbox('getValue') == ""){
+
+            // presenta el mensaje
+            Mensaje("Error", "Atención", "Ingrese el nuevo password");
+            return;
+
+        }
+
+        // verificamos si coincide
+        if ($('#passwordnuevo').textbox('getValue') != $('#passwordverifica').textbox('getValue')){
+
+            // presenta el mensaje
+            Mensaje("Error", "Atención", "La contraseña y la verificación<br>no coinciden");
+            return;
+
+        }
+
+        // verificamos si el password actual coincide
+        this.validaPassword();
+
+    }
+
+    /**
+     * @author Claudio Invernizzi <cinvernizzi@gmail.com>
+     * Método que verifica que en el cambio de contraseña
+     * el password actual coincida con el declarado en
+     * la base, en caso de coincidir actualiza
+     */
+    validaPassword(){
+
+        // reiniciamos la sesion
+        sesion.reiniciar();
+
+        // declaramos la clase
+        var clase = this;
+
+        // obtenemos el password actual
+        var passwordactual = $('#passwordactual').textbox('getValue');
+
+        // validamos que sea correcto
+        $.ajax({
+            url: "seguridad/validapassword.php?idusuario="+this.Id+"&password="+passwordactual,
+            type: "GET",
+            cahe: false,
+            contentType: false,
+            processData: false,
+            dataType: 'json',
+            success: function(data) {
+
+                // si coincide
+                if (data.Resultado != 0){
+
+                    // asignamos en la sesión
+                    clase.grabaPassword();
+
+                // si hubo un error
+                } else {
+
+                    // presenta el mensaje
+                    Mensaje("Error", "Atención", "El password actual no coincide");
+
+                }
+
+        }});
+
+    }
+
+    /**
+     * @author Claudio Invernizzi <cinvernizzi@gmail.com>
+     * Método que actualiza el password de ingreso
+     */
+    grabaPassword(){
+
+        // reiniciamos la sesión
+        sesion.reiniciar();
+
+        // declaramos la clase
+        var clase = this;
+
+        // obtenemos el usuario y el nuevo pass
+        var password = $('#passwordnuevo').textbox('getValue');
+
+        // actualizamos el password
+        $.ajax({
+            url: "seguridad/grabapassword.php?idusuario="+this.Id+"&password="+password,
+            type: "GET",
+            cahe: false,
+            contentType: false,
+            processData: false,
+            dataType: 'json',
+            success: function(data) {
+
+                // si pudo grabar
+                if (data.Resultado){
+
+                    // presenta el mensaje
+                    Mensaje("Info", "Atención", "Contraseña actualizada");
+
+                    // cierra el diálogo
+                    clase.cerrarEmergente();
+
+                // si hubo un error
+                } else {
+
+                    // presenta el mensaje
+                    Mensaje("Error", "Atención", "Ha ocurrido un error");
+
+                }
+
+        }});
 
     }
 
